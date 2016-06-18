@@ -20,7 +20,11 @@ Namespace Localization
                 If _
                     TypeOf (C) Is Button Or _
                     TypeOf (C) Is Label  Then
-                    C.Text = Loader.GetDefaultLanguage().GetValue(C.Tag)
+                    If IsNothing(C.Tag) OrElse C.Tag.Equals("") Then Continue For
+                    Dim t As String = Loader.GetDefaultLanguage().GetValue(C.Tag)
+                    If t.Equals("") Then t = Loader.GetLanguage("en").GetValue(C.Tag)
+                    If t.Equals("") Then Continue For
+                    C.Text = t
                 End If
             Next
         End Sub
