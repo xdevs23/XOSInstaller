@@ -1,0 +1,7 @@
+﻿# Main language details
+lang_locale=en
+lang_name=English (United States)
+# Just an example
+lang_example=Hello World
+# The title of the main window
+mainform_title=halogenOS Installer
