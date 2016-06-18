@@ -1,4 +1,17 @@
-﻿# Main language details
+﻿# Language file for the halogenOS Installer
+# Please don't leave lines blank, make sure the syntax is correct and use comments on their lines:
+#
+# # This is a comment and can be used like this
+# some_key=Some cool translated text
+#
+# But don't do this:
+# some_key=Some cool translated text # ain't a comment
+#
+# To make new lines, use [[LF]]:
+# some_key=Some cool translated text[[LF]]I am on a new line!
+# 
+#
+# Main language details
 lang_locale=en
 lang_name=English (United States)
 # Just an example
