@@ -45,6 +45,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ic_halogenos_black_transparent_sized_eq.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -104,6 +107,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ic_halogenos_black_transparent_sized_eq.ico" />
+    <Content Include="ic_halogen_black_transparent.ico" />
     <Content Include="lang\enus.lang">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
