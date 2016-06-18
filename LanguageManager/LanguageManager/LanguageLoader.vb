@@ -39,14 +39,14 @@ Namespace Localization
 
         Public Function GetLanguage(LocalName As String) As Language
             For Each Lang As Language In Languages
-                If Lang.LangName = LocalName Then Return Lang
+                If Lang.LangName.ToLower() = LocalName.ToLower() Then Return Lang
             Next
             Return Nothing
         End Function
 
         Public Function SetDefaultLanguage(LocalName As String) As Language
             For Each Lang As Language In Languages
-                If Lang.LangName = LocalName Then
+                If Lang.LangName.ToLower() = LocalName.ToLower() Then
                     DefaultLang = Languages.IndexOf(Lang)
                     Return Lang
                 End If
