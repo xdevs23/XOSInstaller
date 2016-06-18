@@ -24,15 +24,14 @@ Partial Class Main
     Private Sub InitializeComponent()
         Me.SuspendLayout
         '
-        'Form1
+        'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 604)
-        Me.Name = "Form1"
+        Me.Name = "Main"
         Me.Text = "halogenOS"
         Me.ResumeLayout(false)
 
 End Sub
-
 End Class
