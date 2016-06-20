@@ -39,6 +39,10 @@ Namespace Localization
             ApplyLanguage(WantedForm, CultureInfo.CurrentCulture.TwoLetterISOLanguageName)
         End Sub
 
+        Public Function GetString(Key As String) As String
+            Return Loader.GetDefaultLanguage().GetValue(Key)
+        End Function
+
     End Class
 
 End Namespace
