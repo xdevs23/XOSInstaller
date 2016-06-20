@@ -26,9 +26,9 @@ Partial Class Main
         Me.halogenOSTitlePanel = New System.Windows.Forms.Panel()
         Me.PageWelcomePanel = New System.Windows.Forms.Panel()
         Me.LblWelcText = New System.Windows.Forms.Label()
-        Me.FlatButton1 = New xdui.FlatButton()
-        Me.FlatButton2 = New xdui.FlatButton()
-        Me.FlatButton3 = New xdui.FlatButton()
+        Me.BtnNext = New xdui.FlatButton()
+        Me.BtnBack = New xdui.FlatButton()
+        Me.BtnCancel = New xdui.FlatButton()
         Me.PageWelcomePanel.SuspendLayout
         Me.SuspendLayout
         '
@@ -62,56 +62,59 @@ Partial Class Main
         Me.LblWelcText.Tag = "page_welcome_welcometext"
         Me.LblWelcText.Text = "LblWelcText"
         '
-        'FlatButton1
+        'BtnNext
         '
-        Me.FlatButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.FlatButton1.FlatAppearance.BorderSize = 0
-        Me.FlatButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.FlatButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.FlatButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.FlatButton1.Font = New System.Drawing.Font("Segoe UI", 10.25!)
-        Me.FlatButton1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
-        Me.FlatButton1.Location = New System.Drawing.Point(717, 566)
-        Me.FlatButton1.Name = "FlatButton1"
-        Me.FlatButton1.Size = New System.Drawing.Size(75, 23)
-        Me.FlatButton1.TabIndex = 5
-        Me.FlatButton1.Tag = "general_next"
-        Me.FlatButton1.Text = "Next"
-        Me.FlatButton1.UseVisualStyleBackColor = false
+        Me.BtnNext.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.BtnNext.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnNext.FlatAppearance.BorderSize = 0
+        Me.BtnNext.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnNext.Font = New System.Drawing.Font("Segoe UI", 10.25!)
+        Me.BtnNext.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.BtnNext.Location = New System.Drawing.Point(717, 566)
+        Me.BtnNext.Name = "BtnNext"
+        Me.BtnNext.Size = New System.Drawing.Size(75, 23)
+        Me.BtnNext.TabIndex = 5
+        Me.BtnNext.Tag = "general_next"
+        Me.BtnNext.Text = "Next"
+        Me.BtnNext.UseVisualStyleBackColor = false
         '
-        'FlatButton2
+        'BtnBack
         '
-        Me.FlatButton2.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.FlatButton2.FlatAppearance.BorderSize = 0
-        Me.FlatButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.FlatButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.FlatButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.FlatButton2.Font = New System.Drawing.Font("Segoe UI", 10.25!)
-        Me.FlatButton2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
-        Me.FlatButton2.Location = New System.Drawing.Point(636, 566)
-        Me.FlatButton2.Name = "FlatButton2"
-        Me.FlatButton2.Size = New System.Drawing.Size(75, 23)
-        Me.FlatButton2.TabIndex = 6
-        Me.FlatButton2.Tag = "general_back"
-        Me.FlatButton2.Text = "Back"
-        Me.FlatButton2.UseVisualStyleBackColor = false
+        Me.BtnBack.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.BtnBack.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnBack.FlatAppearance.BorderSize = 0
+        Me.BtnBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnBack.Font = New System.Drawing.Font("Segoe UI", 10.25!)
+        Me.BtnBack.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.BtnBack.Location = New System.Drawing.Point(636, 566)
+        Me.BtnBack.Name = "BtnBack"
+        Me.BtnBack.Size = New System.Drawing.Size(75, 23)
+        Me.BtnBack.TabIndex = 6
+        Me.BtnBack.Tag = "general_back"
+        Me.BtnBack.Text = "Back"
+        Me.BtnBack.UseVisualStyleBackColor = false
         '
-        'FlatButton3
+        'BtnCancel
         '
-        Me.FlatButton3.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.FlatButton3.FlatAppearance.BorderSize = 0
-        Me.FlatButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.FlatButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.FlatButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.FlatButton3.Font = New System.Drawing.Font("Segoe UI", 10.25!)
-        Me.FlatButton3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
-        Me.FlatButton3.Location = New System.Drawing.Point(555, 566)
-        Me.FlatButton3.Name = "FlatButton3"
-        Me.FlatButton3.Size = New System.Drawing.Size(75, 23)
-        Me.FlatButton3.TabIndex = 7
-        Me.FlatButton3.Tag = "general_cancel"
-        Me.FlatButton3.Text = "Cancel"
-        Me.FlatButton3.UseVisualStyleBackColor = false
+        Me.BtnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.BtnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnCancel.FlatAppearance.BorderSize = 0
+        Me.BtnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnCancel.Font = New System.Drawing.Font("Segoe UI", 10.25!)
+        Me.BtnCancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.BtnCancel.Location = New System.Drawing.Point(555, 566)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.BtnCancel.TabIndex = 7
+        Me.BtnCancel.Tag = "general_cancel"
+        Me.BtnCancel.Text = "Cancel"
+        Me.BtnCancel.UseVisualStyleBackColor = false
         '
         'Main
         '
@@ -119,9 +122,9 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(804, 601)
-        Me.Controls.Add(Me.FlatButton3)
-        Me.Controls.Add(Me.FlatButton2)
-        Me.Controls.Add(Me.FlatButton1)
+        Me.Controls.Add(Me.BtnCancel)
+        Me.Controls.Add(Me.BtnBack)
+        Me.Controls.Add(Me.BtnNext)
         Me.Controls.Add(Me.PageWelcomePanel)
         Me.Controls.Add(Me.halogenOSTitlePanel)
         Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
@@ -137,7 +140,7 @@ End Sub
     Friend WithEvents halogenOSTitlePanel As Panel
     Friend WithEvents PageWelcomePanel As Panel
     Friend WithEvents LblWelcText As Label
-    Friend WithEvents FlatButton1 As xdui.FlatButton
-    Friend WithEvents FlatButton2 As xdui.FlatButton
-    Friend WithEvents FlatButton3 As xdui.FlatButton
+    Friend WithEvents BtnNext As xdui.FlatButton
+    Friend WithEvents BtnBack As xdui.FlatButton
+    Friend WithEvents BtnCancel As xdui.FlatButton
 End Class

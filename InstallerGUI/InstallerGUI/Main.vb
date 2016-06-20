@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing.Text
 Imports System.IO
 Imports xdevs23.Localization
+Imports xdui
 
 Public Class Main
 
@@ -12,7 +13,7 @@ Public Class Main
         RobotoCondensed = New PrivateFontCollection
         RobotoLight = New PrivateFontCollection
         RobotoThin = New PrivateFontCollection
-        For Each FontFile As String 
+        For Each FontFile As String
                 In Directory.GetFiles("fonts/", "Roboto-*.ttf", SearchOption.AllDirectories)
             Debug.WriteLine("Debug: Loading font file " & FontFile & " for main window")
             If FontFile.Contains("Thin") Then
@@ -34,8 +35,11 @@ Public Class Main
         ' Prepare the form
         Size = New Size(820, 640)
         For Each C As Control In Controls
-            If TypeOf(C) Is Panel AndAlso C.Name.Contains("Page") Then
+            If TypeOf (C) Is Panel AndAlso C.Name.Contains("Page") Then
                 C.Size = New Size(800, 420) ' Have the same size for all panels
+            End If
+            If TypeOf (C) Is FlatButton Then
+                C.Font = Font
             End If
         Next
 
