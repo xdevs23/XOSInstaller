@@ -33,6 +33,7 @@ Public Class Main
 
         ' Prepare the form
         Size = New Size(820, 640)
+        PageWelcomePanel.Visible = True
     End Sub
 
 End Class
