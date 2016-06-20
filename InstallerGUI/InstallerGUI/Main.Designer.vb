@@ -46,6 +46,7 @@ Partial Class Main
         Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.MaximizeBox = false
         Me.Name = "Main"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "halogenOS"
         Me.ResumeLayout(false)
 

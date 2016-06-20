@@ -30,6 +30,9 @@ Public Class Main
         ' Load languages
         LangManager = New LanguageManager()
         LangManager.AutoApplyLanguage(Me)
+
+        ' Prepare the form
+        Size = New Size(820, 640)
     End Sub
 
 End Class
