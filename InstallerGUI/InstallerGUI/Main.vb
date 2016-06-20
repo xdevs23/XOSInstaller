@@ -30,9 +30,8 @@ Public Class Main
         ' Load languages
         LangManager = New LanguageManager()
         LangManager.AutoApplyLanguage(Me)
-
-        ' Align & style installer title
-
+        
+        ' TODO: Align & style installer title
     End Sub
 
 End Class
