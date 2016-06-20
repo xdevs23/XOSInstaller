@@ -16,7 +16,11 @@ Namespace Localization
             Loader.LoadLanguages()
             Loader.SetDefaultLanguage(LocalName)
             WantedForm.Text = Loader.GetDefaultLanguage().GetValue("mainform_title")
-            For Each C As Control In WantedForm.Controls
+            RefreshLanguage(WantedForm)
+        End Sub
+
+        Public Sub RefreshLanguage(Cl As Control)
+            For Each C As Control In Cl.Controls
                 If _
                     TypeOf (C) Is Button Or _
                     TypeOf (C) Is Label  Then
@@ -25,6 +29,8 @@ Namespace Localization
                     If t.Equals("") Then t = Loader.GetLanguage("en").GetValue(C.Tag)
                     If t.Equals("") Then Continue For
                     C.Text = t
+                ElseIf TypeOf (C) Is Panel Then
+                    RefreshLanguage(C)
                 End If
             Next
         End Sub
