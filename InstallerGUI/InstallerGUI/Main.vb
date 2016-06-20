@@ -8,6 +8,19 @@ Public Class Main
     Private LangManager As LanguageManager
     Private RobotoCondensed, RobotoLight, RobotoThin As PrivateFontCollection
 
+    Private Shared ReadOnly _
+            STRING_EXIT_CONFIRMATION As String = "confirm_exit",
+            STRING_EXIT_CONF_TITLE   As String = "confirm_exit_title"
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        If MessageBox.Show(LangManager.GetString(STRING_EXIT_CONFIRMATION),
+                           LangManager.GetString(STRING_EXIT_CONF_TITLE),
+                           MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Close()
+            End
+        End If
+    End Sub
+
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Load fonts
         RobotoCondensed = New PrivateFontCollection
