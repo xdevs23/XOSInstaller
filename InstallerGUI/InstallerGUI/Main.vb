@@ -58,6 +58,7 @@ Public Class Main
 
         ' Prepare the first panel
         PageWelcomePanel.Visible = True
+        BtnBack.Visible = False
     End Sub
 
 End Class
