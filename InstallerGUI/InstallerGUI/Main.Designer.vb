@@ -45,7 +45,7 @@ Partial Class Main
         Me.PageWelcomePanel.Controls.Add(Me.LblWelcText)
         Me.PageWelcomePanel.Location = New System.Drawing.Point(2, 95)
         Me.PageWelcomePanel.Name = "PageWelcomePanel"
-        Me.PageWelcomePanel.Size = New System.Drawing.Size(800, 390)
+        Me.PageWelcomePanel.Size = New System.Drawing.Size(800, 420)
         Me.PageWelcomePanel.TabIndex = 4
         Me.PageWelcomePanel.Visible = false
         '
@@ -64,7 +64,7 @@ Partial Class Main
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.ClientSize = New System.Drawing.Size(861, 519)
+        Me.ClientSize = New System.Drawing.Size(804, 601)
         Me.Controls.Add(Me.PageWelcomePanel)
         Me.Controls.Add(Me.halogenOSTitlePanel)
         Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)

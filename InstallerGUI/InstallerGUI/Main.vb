@@ -33,6 +33,13 @@ Public Class Main
 
         ' Prepare the form
         Size = New Size(820, 640)
+        For Each C As Control In Controls
+            If TypeOf(C) Is Panel AndAlso C.Name.Contains("Page") Then
+                C.Size = New Size(800, 420) ' Have the same size for all panels
+            End If
+        Next
+
+        ' Prepare the first panel
         PageWelcomePanel.Visible = True
     End Sub
 
