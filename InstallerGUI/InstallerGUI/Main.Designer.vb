@@ -127,6 +127,7 @@ Partial Class Main
         Me.Controls.Add(Me.BtnNext)
         Me.Controls.Add(Me.PageWelcomePanel)
         Me.Controls.Add(Me.halogenOSTitlePanel)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.MaximizeBox = false
         Me.Name = "Main"
