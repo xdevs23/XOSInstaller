@@ -18,5 +18,9 @@ lang_name=English (United States)
 lang_example=Hello World
 # The title of the main window
 mainform_title=halogenOS Installer
+[General stuff]
+general_next=Next
+general_cancel=Cancel
+general_back=Back
 [Pages]
 page_welcome_welcometext=Welcome to the halogenOS installer![[LF]]This program is going to guide you through the installation progress of halogenOS and do everything necessary to install it on your phone![[LF]][[LF]]We believe that you'll love it!
