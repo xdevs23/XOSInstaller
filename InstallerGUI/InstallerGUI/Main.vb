@@ -7,6 +7,7 @@ Public Class Main
 
     Private LangManager As LanguageManager
     Private RobotoCondensed, RobotoLight, RobotoThin As PrivateFontCollection
+    Private CurrentPage As Integer = 0
 
     Private Shared ReadOnly _
             STRING_EXIT_CONFIRMATION As String = "confirm_exit",
@@ -19,6 +20,37 @@ Public Class Main
             Close()
             End
         End If
+    End Sub
+
+    Private Sub ChangePage(PageNum As Integer)
+        Dim PageCount As Integer = 0
+        For Each C As Control In Controls
+            If isNothing(C.Tag) OrElse C.Tag.ToString().Equals("") Then Continue For
+            If TypeOf(C) Is Panel AndAlso C.Name.Contains("Page")
+                If Integer.Parse(C.Tag) = CurrentPage
+                    C.SendToBack()
+                    C.Visible = False
+                End If
+                If Integer.Parse(C.Tag) = PageNum Then
+                    C.Visible = True
+                    C.BringToFront()
+                    CurrentPage = Integer.Parse(C.Tag)
+                    BtnBack.Visible = (CurrentPage > 0)
+                End If
+                PageCount += 1
+            End If
+        Next
+        Debug.WriteLine(CurrentPage)
+        Debug.WriteLine(PageCount)
+        BtnNext.Visible = Not (CurrentPage = PageCount - 1)
+    End Sub
+    
+    Private Sub ChangePage(Forward As Boolean)
+        ChangePage(CType(IIf(Forward, CurrentPage + 1, CurrentPage - 1), Integer))
+    End Sub
+
+    Private Sub NextBackButton_Click(sender As Object, e As EventArgs) Handles BtnNext.Click, BtnBack.Click
+        ChangePage(CType(sender, FlatButton).Equals(BtnNext))
     End Sub
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -59,6 +91,7 @@ Public Class Main
         ' Prepare the first panel
         PageWelcomePanel.Visible = True
         BtnBack.Visible = False
+        ChangePage(CurrentPage)
     End Sub
 
 End Class

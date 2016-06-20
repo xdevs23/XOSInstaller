@@ -50,6 +50,7 @@ Partial Class Main
         Me.PageWelcomePanel.Name = "PageWelcomePanel"
         Me.PageWelcomePanel.Size = New System.Drawing.Size(800, 420)
         Me.PageWelcomePanel.TabIndex = 4
+        Me.PageWelcomePanel.Tag = "0"
         Me.PageWelcomePanel.Visible = false
         '
         'LblWelcText
