@@ -22,24 +22,14 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.halogenOSTitlePanel = New System.Windows.Forms.Panel()
         Me.PageWelcomePanel = New System.Windows.Forms.Panel()
         Me.LblWelcText = New System.Windows.Forms.Label()
         Me.BtnNext = New xdui.FlatButton()
         Me.BtnBack = New xdui.FlatButton()
         Me.BtnCancel = New xdui.FlatButton()
+        Me.halogenOSTitlePanel = New System.Windows.Forms.Panel()
         Me.PageWelcomePanel.SuspendLayout
         Me.SuspendLayout
-        '
-        'halogenOSTitlePanel
-        '
-        Me.halogenOSTitlePanel.BackColor = System.Drawing.Color.Transparent
-        Me.halogenOSTitlePanel.BackgroundImage = Global.InstallerGUI.My.Resources.Resources.installer_title_xosi_final
-        Me.halogenOSTitlePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.halogenOSTitlePanel.Location = New System.Drawing.Point(2, 2)
-        Me.halogenOSTitlePanel.Name = "halogenOSTitlePanel"
-        Me.halogenOSTitlePanel.Size = New System.Drawing.Size(420, 86)
-        Me.halogenOSTitlePanel.TabIndex = 3
         '
         'PageWelcomePanel
         '
@@ -55,7 +45,7 @@ Partial Class Main
         'LblWelcText
         '
         Me.LblWelcText.AutoSize = true
-        Me.LblWelcText.Location = New System.Drawing.Point(11, 4)
+        Me.LblWelcText.Location = New System.Drawing.Point(10, 0)
         Me.LblWelcText.Name = "LblWelcText"
         Me.LblWelcText.Size = New System.Drawing.Size(67, 13)
         Me.LblWelcText.TabIndex = 0
@@ -115,6 +105,16 @@ Partial Class Main
         Me.BtnCancel.Tag = "general_cancel"
         Me.BtnCancel.Text = "Cancel"
         Me.BtnCancel.UseVisualStyleBackColor = false
+        '
+        'halogenOSTitlePanel
+        '
+        Me.halogenOSTitlePanel.BackColor = System.Drawing.Color.Transparent
+        Me.halogenOSTitlePanel.BackgroundImage = Global.InstallerGUI.My.Resources.Resources.installer_title_xosi_final
+        Me.halogenOSTitlePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.halogenOSTitlePanel.Location = New System.Drawing.Point(2, 2)
+        Me.halogenOSTitlePanel.Name = "halogenOSTitlePanel"
+        Me.halogenOSTitlePanel.Size = New System.Drawing.Size(420, 86)
+        Me.halogenOSTitlePanel.TabIndex = 3
         '
         'Main
         '
