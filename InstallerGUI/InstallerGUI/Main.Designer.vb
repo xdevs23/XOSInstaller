@@ -22,7 +22,6 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.halogenOSTitlePanel = New System.Windows.Forms.Panel()
         Me.PageWelcomePanel = New System.Windows.Forms.Panel()
         Me.LblWelcText = New System.Windows.Forms.Label()
@@ -35,7 +34,7 @@ Partial Class Main
         'halogenOSTitlePanel
         '
         Me.halogenOSTitlePanel.BackColor = System.Drawing.Color.Transparent
-        Me.halogenOSTitlePanel.BackgroundImage = CType(resources.GetObject("halogenOSTitlePanel.BackgroundImage"),System.Drawing.Image)
+        Me.halogenOSTitlePanel.BackgroundImage = Global.InstallerGUI.My.Resources.Resources.installer_title_xosi_final
         Me.halogenOSTitlePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.halogenOSTitlePanel.Location = New System.Drawing.Point(2, 2)
         Me.halogenOSTitlePanel.Name = "halogenOSTitlePanel"
@@ -129,7 +128,6 @@ Partial Class Main
         Me.Controls.Add(Me.PageWelcomePanel)
         Me.Controls.Add(Me.halogenOSTitlePanel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.MaximizeBox = false
         Me.Name = "Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

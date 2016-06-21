@@ -61,7 +61,8 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ic_halogenos_black_transparent_sized_eq.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -145,14 +146,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ic_halogenos_black_transparent_sized_eq.ico" />
-    <Content Include="ic_halogen_black_transparent.ico" />
+    <Content Include="xosicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="lang\enus.lang">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="lang\de.lang">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\installer-title-xosi-final.png" />
     <None Include="fonts\Roboto-Black.ttf" />
     <None Include="fonts\Roboto-BlackItalic.ttf" />
     <Content Include="fonts\Roboto-Bold.ttf">

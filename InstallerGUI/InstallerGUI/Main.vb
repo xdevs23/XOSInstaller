@@ -78,19 +78,15 @@ Public Class Main
         LangManager.AutoApplyLanguage(Me)
 
         ' Prepare the form
-        Size = New Size(820, 640)
-        For Each C As Control In Controls
-            If TypeOf (C) Is Panel AndAlso C.Name.Contains("Page") Then
-                C.Size = New Size(800, 420) ' Have the same size for all panels
-            End If
-            If TypeOf (C) Is FlatButton Then
-                C.Font = Font
-            End If
-        Next
+        Try
+            Icon = New Icon("xosicon.ico")
+        Catch ex As ComponentModel.Win32Exception
+            Dim lineToWrite As String = "Warning: Failed to load icon, assuming linux, skipping this step."
+            Debug.WriteLine(lineToWrite)
+            Console.WriteLine(lineToWrite)
+        End Try
 
         ' Prepare the first panel
-        PageWelcomePanel.Visible = True
-        BtnBack.Visible = False
         ChangePage(CurrentPage)
     End Sub
 
