@@ -106,6 +106,7 @@ Public Class Main
         For Each C As Control In Controls
             If TypeOf (C) Is Panel AndAlso C.Name.Contains("Page") Then
                 C.Size = New Size(800, 420) ' Have the same size for all panels
+                C.Location = New Point(2, 94)
             End If
             If TypeOf (C) Is FlatButton Then
                 C.Font = Font
