@@ -9,9 +9,15 @@ Public Class Main
     Private RobotoCondensed, RobotoLight, RobotoThin As PrivateFontCollection
     Private CurrentPage As Integer = 0
 
+    Private WithEvents _
+        AdbDetectDeviceTimer As New Timer()
+    Private _
+        AdbDetectDeviceThread As Threading.Thread
+
     Private Shared ReadOnly _
             STRING_EXIT_CONFIRMATION As String = "confirm_exit",
-            STRING_EXIT_CONF_TITLE   As String = "confirm_exit_title"
+            STRING_EXIT_CONF_TITLE   As String = "confirm_exit_title",
+            STRING_DEVICE_DETECTED   As String = "page_detect_device_detected"
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         If MessageBox.Show(LangManager.GetString(STRING_EXIT_CONFIRMATION),
@@ -22,43 +28,74 @@ Public Class Main
         End If
     End Sub
 
-    Private Sub HandlePage(PageName As String)
+    Private Sub AdbDetectDeviceTimer_Tick(sender As Object, e As EventArgs) Handles AdbDetectDeviceTimer.Tick
+        HandlePage(PageDetectDevicePanel.Name, STRING_DEVICE_DETECTED)
+    End Sub
+
+    Private Sub HandlePage(PageName As String, Optional Arguments As String = "")
         Select Case PageName
-            Case PageDetectDevicecPanel.Name
-                Dim bla As New Threading.Thread( _
-                    New Threading.ThreadStart(AddressOf DoAdbDetect) _
-                )
-                bla.Start()
+            Case PageDetectDevicePanel.Name
+                If Arguments.Equals("") Then
+                    AdbDetectDeviceThread = New Threading.Thread( _
+                        New Threading.ThreadStart(AddressOf DoAdbDetect) _
+                    )
+                    AdbDetectDeviceThread.Start()
+                    AdbDetectDeviceTimer.Interval = 2000
+                    AdbDetectDeviceTimer.Start()
+                    BtnNext.Enabled = False
+                    BtnBack.Enabled = False
+                Else
+                    If AdbDetectDeviceThread.ThreadState = Threading.ThreadState.Stopped Then
+                        Dim OldTag As String = LblDetectingDevice.Tag.ToString()
+                        LblDetectingDevice.Tag = STRING_DEVICE_DETECTED
+                        LangManager.RefreshLanguage(PageDetectDevicePanel)
+                        BtnNext.Enabled = True
+                        BtnBack.Enabled = True
+                        LblDetectingDevice.Tag = OldTag
+                    End If
+                End If
         End Select
     End Sub
 
     Private Sub ChangePage(PageNum As Integer)
-        Dim PageCount As Integer = 0
-        For Each C As Control In Controls
+        Dim PageCount As Integer = 0, FoundPage As Integer = 0
+        Dim FoundPageName As String = ""
+        For i As Integer = 0 To Controls.Count - 1 Step 1
+            Dim C As Control = Controls(i)
             If isNothing(C.Tag) OrElse C.Tag.ToString().Equals("") Then Continue For
-            If TypeOf(C) Is Panel AndAlso C.Name.Contains("Page")
-                If Integer.Parse(C.Tag.ToString()) = CurrentPage
-                    C.SendToBack()
-                    C.Visible = False
-                End If
+            If TypeOf(C) Is Panel AndAlso C.Name.Contains("Page") AndAlso IsNumeric(C.Tag.ToString())
+                If Not C.Name.Contains("Page") Then Continue For
+                C.SendToBack()
+                C.Visible = False
                 PageCount += 1
+            End If
+        Next
+        For i As Integer = 0 To Controls.Count - 1 Step 1
+            Dim C As Control = Controls(i)
+            If isNothing(C.Tag) OrElse C.Tag.ToString().Equals("") Then Continue For
+            If TypeOf(C) Is Panel AndAlso C.Name.Contains("Page") AndAlso IsNumeric(C.Tag.ToString())
                 If Integer.Parse(C.Tag.ToString()) = PageNum Then
                     C.Visible = True
                     C.BringToFront()
-                    CurrentPage = Integer.Parse(C.Tag.ToString())
-                    BtnBack.Visible = (CurrentPage > 0)
-                    HandlePage(C.Name)
+                    FoundPage = Integer.Parse(C.Tag.ToString())
+                    FoundPageName = C.Name
+                    LangManager.RefreshLanguage(C)
                 End If
             End If
         Next
-        Debug.WriteLine(CurrentPage)
-        Debug.WriteLine(PageCount)
-        BtnNext.Visible = Not (CurrentPage = PageCount - 1)
+        CurrentPage = FoundPage
+        BtnNext.Visible = Not (CurrentPage = PageCount - 2)
+        BtnBack.Visible = (CurrentPage > 0)
+        HandlePage(FoundPageName)
     End Sub
 
     Private Sub DoAdbDetect()
         Debug.WriteLine("Detecting device...")
+        AdbHelper.ExecuteAdbCommand("kill-server")
+        AdbHelper.ExecuteAdbCommand("start-server")
         AdbHelper.ExecuteAdbCommand("wait-for-device")
+        AdbHelper.ExecuteAdbCommand("devices")
+        AdbHelper.ExecuteAdbCommand("shell getprop ro.product.device")
     End Sub
 
     Private Sub ChangePage(Forward As Boolean)

@@ -28,10 +28,10 @@ Partial Class Main
         Me.BtnBack = New xdui.FlatButton()
         Me.BtnCancel = New xdui.FlatButton()
         Me.halogenOSTitlePanel = New System.Windows.Forms.Panel()
-        Me.PageDetectDevicecPanel = New System.Windows.Forms.Panel()
+        Me.PageDetectDevicePanel = New System.Windows.Forms.Panel()
         Me.LblDetectingDevice = New System.Windows.Forms.Label()
         Me.PageWelcomePanel.SuspendLayout
-        Me.PageDetectDevicecPanel.SuspendLayout
+        Me.PageDetectDevicePanel.SuspendLayout
         Me.SuspendLayout
         '
         'PageWelcomePanel
@@ -119,14 +119,15 @@ Partial Class Main
         Me.halogenOSTitlePanel.Size = New System.Drawing.Size(420, 86)
         Me.halogenOSTitlePanel.TabIndex = 3
         '
-        'PageDetectDevicecPanel
+        'PageDetectDevicePanel
         '
-        Me.PageDetectDevicecPanel.Controls.Add(Me.LblDetectingDevice)
-        Me.PageDetectDevicecPanel.Location = New System.Drawing.Point(86, 95)
-        Me.PageDetectDevicecPanel.Name = "PageDetectDevicecPanel"
-        Me.PageDetectDevicecPanel.Size = New System.Drawing.Size(706, 465)
-        Me.PageDetectDevicecPanel.TabIndex = 8
-        Me.PageDetectDevicecPanel.Tag = "1"
+        Me.PageDetectDevicePanel.Controls.Add(Me.LblDetectingDevice)
+        Me.PageDetectDevicePanel.Location = New System.Drawing.Point(87, 95)
+        Me.PageDetectDevicePanel.Name = "PageDetectDevicePanel"
+        Me.PageDetectDevicePanel.Size = New System.Drawing.Size(357, 465)
+        Me.PageDetectDevicePanel.TabIndex = 8
+        Me.PageDetectDevicePanel.Tag = "1"
+        Me.PageDetectDevicePanel.Visible = false
         '
         'LblDetectingDevice
         '
@@ -144,7 +145,7 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(804, 601)
-        Me.Controls.Add(Me.PageDetectDevicecPanel)
+        Me.Controls.Add(Me.PageDetectDevicePanel)
         Me.Controls.Add(Me.BtnCancel)
         Me.Controls.Add(Me.BtnBack)
         Me.Controls.Add(Me.BtnNext)
@@ -157,8 +158,8 @@ Partial Class Main
         Me.Text = "halogenOS"
         Me.PageWelcomePanel.ResumeLayout(false)
         Me.PageWelcomePanel.PerformLayout
-        Me.PageDetectDevicecPanel.ResumeLayout(false)
-        Me.PageDetectDevicecPanel.PerformLayout
+        Me.PageDetectDevicePanel.ResumeLayout(false)
+        Me.PageDetectDevicePanel.PerformLayout
         Me.ResumeLayout(false)
 
 End Sub
@@ -168,6 +169,6 @@ End Sub
     Friend WithEvents BtnNext As xdui.FlatButton
     Friend WithEvents BtnBack As xdui.FlatButton
     Friend WithEvents BtnCancel As xdui.FlatButton
-    Friend WithEvents PageDetectDevicecPanel As Panel
+    Friend WithEvents PageDetectDevicePanel As Panel
     Friend WithEvents LblDetectingDevice As Label
 End Class
