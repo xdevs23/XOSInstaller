@@ -20,7 +20,7 @@ Namespace Localization
         End Sub
 
         Public Sub LoadLanguages()
-            For Each File As String
+            For Each File As String _
                 In Directory.GetFiles(LangFolder, LangExtension, SearchOption.AllDirectories)
                 Debug.WriteLine("Debug: Loading language file " & File)
                 Dim langFile As ConfigFile = Utils.ReadConfigFile(File)

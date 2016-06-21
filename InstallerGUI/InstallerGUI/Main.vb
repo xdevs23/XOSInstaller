@@ -58,7 +58,7 @@ Public Class Main
         RobotoCondensed = New PrivateFontCollection
         RobotoLight = New PrivateFontCollection
         RobotoThin = New PrivateFontCollection
-        For Each FontFile As String
+        For Each FontFile As String _
                 In Directory.GetFiles("fonts/", "Roboto-*.ttf", SearchOption.AllDirectories)
             Debug.WriteLine("Debug: Loading font file " & FontFile & " for main window")
             If FontFile.Contains("Thin") Then
@@ -67,7 +67,7 @@ Public Class Main
                 RobotoLight.AddFontFile(FontFile)
             End If
         Next
-        For Each FontFile As String
+        For Each FontFile As String _
                 In Directory.GetFiles("fonts/", "RobotoCondensed-*.ttf", SearchOption.AllDirectories)
             RobotoCondensed.AddFontFile(FontFile)
         Next
