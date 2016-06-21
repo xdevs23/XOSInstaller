@@ -85,6 +85,16 @@ Public Class Main
             Debug.WriteLine(lineToWrite)
             Console.WriteLine(lineToWrite)
         End Try
+ 
+        Size = New Size(820, 640)
+        For Each C As Control In Controls
+            If TypeOf (C) Is Panel AndAlso C.Name.Contains("Page") Then
+                C.Size = New Size(800, 420) ' Have the same size for all panels
+            End If
+            If TypeOf (C) Is FlatButton Then
+                C.Font = Font
+            End If
+        Next
 
         ' Prepare the first panel
         ChangePage(CurrentPage)
