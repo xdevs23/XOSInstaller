@@ -26,3 +26,4 @@ confirm_exit=Are you sure that you want to exit the application?
 confirm_exit_title=Cancel progress
 [Pages]
 page_welcome_welcometext=Welcome to the halogenOS installer![[LF]]This program is going to guide you through the installation progress of halogenOS and do everything necessary to install it on your phone![[LF]][[LF]]We believe that you'll love it!
+page_detect_detecting_device=Detecting device...[[LF]][[LF]]We are trying to detect your Android device. Please make sure to enable 'USB debugging' in Settings -> Developer options -> USB debugging in order to proceed.[[LF]]Please connect your device to continue.

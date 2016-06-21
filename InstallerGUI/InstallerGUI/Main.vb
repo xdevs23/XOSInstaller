@@ -22,6 +22,16 @@ Public Class Main
         End If
     End Sub
 
+    Private Sub HandlePage(PageName As String)
+        Select Case PageName
+            Case PageDetectDevicecPanel.Name
+                Dim bla As New Threading.Thread( _
+                    New Threading.ThreadStart(AddressOf DoAdbDetect) _
+                )
+                bla.Start()
+        End Select
+    End Sub
+
     Private Sub ChangePage(PageNum As Integer)
         Dim PageCount As Integer = 0
         For Each C As Control In Controls
@@ -31,20 +41,26 @@ Public Class Main
                     C.SendToBack()
                     C.Visible = False
                 End If
+                PageCount += 1
                 If Integer.Parse(C.Tag.ToString()) = PageNum Then
                     C.Visible = True
                     C.BringToFront()
                     CurrentPage = Integer.Parse(C.Tag.ToString())
                     BtnBack.Visible = (CurrentPage > 0)
+                    HandlePage(C.Name)
                 End If
-                PageCount += 1
             End If
         Next
         Debug.WriteLine(CurrentPage)
         Debug.WriteLine(PageCount)
         BtnNext.Visible = Not (CurrentPage = PageCount - 1)
     End Sub
-    
+
+    Private Sub DoAdbDetect()
+        Debug.WriteLine("Detecting device...")
+        AdbHelper.ExecuteAdbCommand("wait-for-device")
+    End Sub
+
     Private Sub ChangePage(Forward As Boolean)
         ChangePage(CType(IIf(Forward, CurrentPage + 1, CurrentPage - 1), Integer))
     End Sub
