@@ -27,14 +27,14 @@ Public Class Main
         For Each C As Control In Controls
             If isNothing(C.Tag) OrElse C.Tag.ToString().Equals("") Then Continue For
             If TypeOf(C) Is Panel AndAlso C.Name.Contains("Page")
-                If Integer.Parse(C.Tag) = CurrentPage
+                If Integer.Parse(C.Tag.ToString()) = CurrentPage
                     C.SendToBack()
                     C.Visible = False
                 End If
-                If Integer.Parse(C.Tag) = PageNum Then
+                If Integer.Parse(C.Tag.ToString()) = PageNum Then
                     C.Visible = True
                     C.BringToFront()
-                    CurrentPage = Integer.Parse(C.Tag)
+                    CurrentPage = Integer.Parse(C.Tag.ToString())
                     BtnBack.Visible = (CurrentPage > 0)
                 End If
                 PageCount += 1
@@ -58,7 +58,7 @@ Public Class Main
         RobotoCondensed = New PrivateFontCollection
         RobotoLight = New PrivateFontCollection
         RobotoThin = New PrivateFontCollection
-        For Each FontFile As String _
+        For Each FontFile As String
                 In Directory.GetFiles("fonts/", "Roboto-*.ttf", SearchOption.AllDirectories)
             Debug.WriteLine("Debug: Loading font file " & FontFile & " for main window")
             If FontFile.Contains("Thin") Then
@@ -67,7 +67,7 @@ Public Class Main
                 RobotoLight.AddFontFile(FontFile)
             End If
         Next
-        For Each FontFile As String _
+        For Each FontFile As String
                 In Directory.GetFiles("fonts/", "RobotoCondensed-*.ttf", SearchOption.AllDirectories)
             RobotoCondensed.AddFontFile(FontFile)
         Next
