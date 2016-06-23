@@ -111,7 +111,10 @@ Public Class Main
     End Sub
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim sw As New StopWatch
         ' Load fonts
+        sw.Start()
+        Console.WriteLine("Loading fonts...")
         RobotoCondensed = New PrivateFontCollection
         RobotoLight = New PrivateFontCollection
         RobotoThin = New PrivateFontCollection
@@ -129,10 +132,18 @@ Public Class Main
             RobotoCondensed.AddFontFile(FontFile)
         Next
         Font = New Font(RobotoCondensed.Families(0), 9.25, FontStyle.Regular)
+        sw.Stop()
+        Console.WriteLine("Fonts loaded. " & sw.ElapsedMilliseconds() & " ms elapsed.")
+
+        Console.WriteLine()
 
         ' Load languages
+        sw.Start()
+        Console.WriteLine("Loading languages...")
         LangManager = New LanguageManager()
         LangManager.AutoApplyLanguage(Me)
+        Console.WriteLine("Languages loaded. " & sw.ElapsedMilliseconds() & " ms elapsed.")
+        sw.Stop()
 
         ' Prepare the form
         Try

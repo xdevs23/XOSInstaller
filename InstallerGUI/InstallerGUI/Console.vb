@@ -8,6 +8,10 @@
         Write(Msg & vbCrLf)
     End Sub
 
+    Public Shared Sub WriteLine()
+        Write(vbCrLf)
+    End Sub
+
     Public Sub SetOut(newOut As IO.TextWriter)
         System.Console.SetOut(newOut)
     End Sub
