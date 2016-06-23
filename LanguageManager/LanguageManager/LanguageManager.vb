@@ -15,7 +15,7 @@ Namespace Localization
             Loader = New LanguageLoader()
             Loader.LoadLanguages()
             Loader.SetDefaultLanguage(LocalName)
-            WantedForm.Text = Loader.GetDefaultLanguage().GetValue("mainform_title")
+            WantedForm.Text = Loader.GetDefaultLanguage().GetValue(WantedForm.Tag)
             RefreshLanguage(WantedForm)
         End Sub
 
