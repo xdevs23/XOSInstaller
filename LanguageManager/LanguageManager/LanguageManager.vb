@@ -40,7 +40,8 @@ Namespace Localization
         End Sub
 
         Public Function GetString(Key As String) As String
-            Return Loader.GetDefaultLanguage().GetValue(Key)
+            Dim s As String = Loader.GetDefaultLanguage().GetValue(Key)
+            Return IIf(s.Equals(""), Loader.GetLanguage("en").GetValue(Key), s).ToString()
         End Function
 
     End Class
