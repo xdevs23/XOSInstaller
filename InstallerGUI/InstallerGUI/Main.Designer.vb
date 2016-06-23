@@ -30,6 +30,7 @@ Partial Class Main
         Me.halogenOSTitlePanel = New System.Windows.Forms.Panel()
         Me.PageDetectDevicePanel = New System.Windows.Forms.Panel()
         Me.LblDetectingDevice = New System.Windows.Forms.Label()
+        Me.BtnShowConsole = New xdui.FlatButton()
         Me.PageWelcomePanel.SuspendLayout
         Me.PageDetectDevicePanel.SuspendLayout
         Me.SuspendLayout
@@ -139,12 +140,31 @@ Partial Class Main
         Me.LblDetectingDevice.Tag = "page_detect_detecting_device"
         Me.LblDetectingDevice.Text = "LblDetectingDevice"
         '
+        'BtnShowConsole
+        '
+        Me.BtnShowConsole.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnShowConsole.FlatAppearance.BorderSize = 0
+        Me.BtnShowConsole.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnShowConsole.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnShowConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnShowConsole.Font = New System.Drawing.Font("Segoe UI", 10.25!)
+        Me.BtnShowConsole.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.BtnShowConsole.Location = New System.Drawing.Point(693, 12)
+        Me.BtnShowConsole.Name = "BtnShowConsole"
+        Me.BtnShowConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnShowConsole.Size = New System.Drawing.Size(99, 23)
+        Me.BtnShowConsole.TabIndex = 9
+        Me.BtnShowConsole.Tag = "mainform_showconsole"
+        Me.BtnShowConsole.Text = "Console"
+        Me.BtnShowConsole.UseVisualStyleBackColor = false
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(804, 601)
+        Me.Controls.Add(Me.BtnShowConsole)
         Me.Controls.Add(Me.PageDetectDevicePanel)
         Me.Controls.Add(Me.BtnCancel)
         Me.Controls.Add(Me.BtnBack)
@@ -155,6 +175,7 @@ Partial Class Main
         Me.MaximizeBox = false
         Me.Name = "Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Tag = "mainform_title"
         Me.Text = "halogenOS"
         Me.PageWelcomePanel.ResumeLayout(false)
         Me.PageWelcomePanel.PerformLayout
@@ -171,4 +192,5 @@ End Sub
     Friend WithEvents BtnCancel As xdui.FlatButton
     Friend WithEvents PageDetectDevicePanel As Panel
     Friend WithEvents LblDetectingDevice As Label
+    Friend WithEvents BtnShowConsole As xdui.FlatButton
 End Class

@@ -5,6 +5,7 @@
             .Contains("unix"), "prebuilts/linux/adb/adb", "prebuilts\adb\adb.exe").ToString()
 
     Public Shared Function ExecuteAdbCommand(command As String) As String
+        Console.WriteLine("Executing command 'adb " & command & "'...")
         Dim p As New ProcessStartInfo
 
         p.FileName  = AdbExec

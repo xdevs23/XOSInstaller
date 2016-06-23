@@ -5,7 +5,7 @@ Imports xdui
 
 Public Class Main
 
-    Private LangManager As LanguageManager
+    Protected Friend Shared LangManager As LanguageManager
     Private RobotoCondensed, RobotoLight, RobotoThin As PrivateFontCollection
     Private CurrentPage As Integer = 0
 
@@ -87,6 +87,10 @@ Public Class Main
         BtnNext.Visible = Not (CurrentPage = PageCount - 2)
         BtnBack.Visible = (CurrentPage > 0)
         HandlePage(FoundPageName)
+    End Sub
+
+    Private Sub BtnShowConsole_Click(sender As Object, e As EventArgs) Handles BtnShowConsole.Click
+        ConsoleWindow.Show()
     End Sub
 
     Private Sub DoAdbDetect()
