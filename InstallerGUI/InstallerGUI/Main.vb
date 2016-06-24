@@ -42,7 +42,6 @@ Public Class Main
                     AdbDetectDeviceThread.Start()
                     AdbDetectDeviceTimer.Interval = 2000
                     AdbDetectDeviceTimer.Start()
-                    Throw New Exception("Test")
                     BtnNext.Enabled = False
                     BtnBack.Enabled = False
                 Else
