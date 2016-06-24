@@ -13,7 +13,10 @@ Public Class ConsoleWindow
         Main.LangManager.AutoApplyLanguage(Me)
         ConsoleBox.Text = "halogenOS Installer Console" & vbCrLf & _
             "Copyright (C) 2016 Simao Gomes Viana (xdevs23)" & vbCrLf & _
-            "Copyright (C) 2016 halogenOS" & vbCrLf & vbCrLf & PreEnteredConsoleText
+            "Copyright (C) 2016 halogenOS" & vbCrLf &  _
+            "This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'." & vbCrLf & _
+            "This is free software, and you are welcome to redistribute it" & vbCrLf & _
+            "under certain conditions" & vbCrLf & vbCrLf & PreEnteredConsoleText
         ConsoleBoxStatic = ConsoleBox
     End Sub
 
