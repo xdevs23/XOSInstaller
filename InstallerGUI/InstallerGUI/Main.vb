@@ -169,4 +169,11 @@ Public Class Main
         ChangePage(CurrentPage)
     End Sub
 
+    Private Sub Main_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        On Error Resume Next ' Force threads to stop without exception
+        ' Stop timers
+        AdbDetectDeviceTimer.Stop()
+        ' Shut down threads
+        AdbDetectDeviceThread.Abort()
+    End Sub
 End Class
