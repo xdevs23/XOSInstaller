@@ -7,7 +7,7 @@ Public Class Main
 
     Protected Friend Shared LangManager As LanguageManager
     Private RobotoCondensed, RobotoLight, RobotoThin As PrivateFontCollection
-    Private CurrentPage As Integer = 0
+    Private CurrentPage As Integer = 0, CurrentLangIndex As Integer = 0
 
     Private WithEvents _
         AdbDetectDeviceTimer As New Timer()
@@ -17,7 +17,8 @@ Public Class Main
     Private Shared ReadOnly _
             STRING_EXIT_CONFIRMATION As String = "confirm_exit",
             STRING_EXIT_CONF_TITLE   As String = "confirm_exit_title",
-            STRING_DEVICE_DETECTED   As String = "page_detect_device_detected"
+            STRING_DEVICE_DETECTED   As String = "page_detect_device_detected",
+            STRING_DEVICE_DETECTING  As String = "page_detect_detecting_device"
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         If MessageBox.Show(LangManager.GetString(STRING_EXIT_CONFIRMATION),
@@ -36,6 +37,8 @@ Public Class Main
         Select Case PageName
             Case PageDetectDevicePanel.Name
                 If Arguments.Equals("") Then
+                    LblDetectingDevice.Tag = STRING_DEVICE_DETECTING
+                    LangManager.RefreshLanguage(PageDetectDevicePanel)
                     AdbDetectDeviceThread = New Threading.Thread( _
                         New Threading.ThreadStart(AddressOf DoAdbDetect) _
                     )
@@ -51,7 +54,7 @@ Public Class Main
                         LangManager.RefreshLanguage(PageDetectDevicePanel)
                         BtnNext.Enabled = True
                         BtnBack.Enabled = True
-                        LblDetectingDevice.Tag = OldTag
+                        AdbDetectDeviceTimer.Stop()
                     End If
                 End If
         End Select
@@ -143,6 +146,15 @@ Public Class Main
         Console.WriteLine("Loading languages...")
         LangManager = New LanguageManager()
         LangManager.AutoApplyLanguage(Me)
+        Dim length As Byte = 0
+        For Each L As Language In LangManager.Loader.GetLanguages()
+            CbxLanguageCh.Items.Add(L)
+            length = Math.Max(length, CByte(L.ToString().Length))
+        Next
+        CbxLanguageCh.DropDownWidth = CInt(Math.Round(length * (9.25 * 0.56), 0, MidpointRounding.AwayFromZero))
+        CbxLanguageCh.SelectedItem = LangManager.Loader.GetDefaultLanguage()
+        CurrentLangIndex = CbxLanguageCh.SelectedIndex
+        
         Console.WriteLine("Languages loaded. " & sw.ElapsedMilliseconds() & " ms elapsed.")
         sw.Stop()
 
@@ -161,7 +173,13 @@ Public Class Main
                 C.Size = New Size(800, 420) ' Have the same size for all panels
                 C.Location = New Point(2, 94)
                 For Each Cx As Control In C.Controls
-                    If TypeOf (Cx) Is Label Then Cx.MaximumSize = New Size(C.Width, C.Height)
+                    If TypeOf (Cx) Is Label Then
+                        Cx.MaximumSize = New Size(C.Width, C.Height)
+                    ElseIf TypeOf(Cx) _
+                        Is ComboBox _
+                        Then
+                        Cx.Font = Font
+                    End If
                 Next
             End If
             If TypeOf (C) Is FlatButton Then
@@ -179,5 +197,12 @@ Public Class Main
         AdbDetectDeviceTimer.Stop()
         ' Shut down threads
         AdbDetectDeviceThread.Abort()
+    End Sub
+
+    Private Sub CbxLanguageCh_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles CbxLanguageCh.SelectionChangeCommitted
+        If Not CbxLanguageCh.SelectedIndex = CurrentLangIndex Then
+            LangManager.ApplyLanguage(Me, CType(CbxLanguageCh.SelectedItem, Language).LangName)
+            CurrentLangIndex = CbxLanguageCh.SelectedIndex
+        End If
     End Sub
 End Class

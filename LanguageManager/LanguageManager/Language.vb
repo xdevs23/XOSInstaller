@@ -3,7 +3,7 @@
     Public Class Language
 
         Friend StringKeys, StringValues As String()
-        Friend LangName, LangLongName   As String
+        Public LangName, LangLongName   As String
 
         Public Sub New(LocalName As String)
             LangName = LocalName
@@ -21,6 +21,10 @@
                 If Value = StringValues(i) Then Return StringKeys(i)
             Next
             Return ""
+        End Function
+
+        Public Overrides Function ToString() As String
+            Return LangLongName & " (" & LangName.ToUpper() & ")"
         End Function
 
     End Class

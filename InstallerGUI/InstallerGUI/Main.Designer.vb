@@ -31,6 +31,7 @@ Partial Class Main
         Me.PageDetectDevicePanel = New System.Windows.Forms.Panel()
         Me.LblDetectingDevice = New System.Windows.Forms.Label()
         Me.BtnShowConsole = New xdui.FlatButton()
+        Me.CbxLanguageCh = New System.Windows.Forms.ComboBox()
         Me.PageWelcomePanel.SuspendLayout
         Me.PageDetectDevicePanel.SuspendLayout
         Me.SuspendLayout
@@ -158,12 +159,27 @@ Partial Class Main
         Me.BtnShowConsole.Text = "Console"
         Me.BtnShowConsole.UseVisualStyleBackColor = false
         '
+        'CbxLanguageCh
+        '
+        Me.CbxLanguageCh.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.CbxLanguageCh.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.CbxLanguageCh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CbxLanguageCh.DropDownWidth = 128
+        Me.CbxLanguageCh.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.CbxLanguageCh.FormattingEnabled = true
+        Me.CbxLanguageCh.Location = New System.Drawing.Point(566, 12)
+        Me.CbxLanguageCh.MaxDropDownItems = 100
+        Me.CbxLanguageCh.Name = "CbxLanguageCh"
+        Me.CbxLanguageCh.Size = New System.Drawing.Size(121, 21)
+        Me.CbxLanguageCh.TabIndex = 10
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(804, 601)
+        Me.Controls.Add(Me.CbxLanguageCh)
         Me.Controls.Add(Me.BtnShowConsole)
         Me.Controls.Add(Me.PageDetectDevicePanel)
         Me.Controls.Add(Me.BtnCancel)
@@ -193,4 +209,5 @@ End Sub
     Friend WithEvents PageDetectDevicePanel As Panel
     Friend WithEvents LblDetectingDevice As Label
     Friend WithEvents BtnShowConsole As xdui.FlatButton
+    Friend WithEvents CbxLanguageCh As ComboBox
 End Class
