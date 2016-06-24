@@ -9,14 +9,25 @@ Public Class ConsoleWindow
     Private Shared PreEnteredConsoleText As String
     Private Shared ConsoleBoxStatic As TextBox
 
+    ' The stuff to print in console before anything else
+    Private ReadOnly ConsolePrePrint As String() = {
+        "halogenOS Installer Console",
+        "Copyright (C) 2016 Simao Gomes Viana (xdevs23)",
+        "Copyright (C) 2016 halogenOS",
+        "Licensed under the GPLv3 license, for more information,",
+        "visit https://github.com/xdevs23/XOSInstaller/tree/XOS-6.0/LICENSE",
+        "This program comes with ABSOLUTELY NO WARRANTY.",
+        "This is free software, and you are welcome to redistribute it under certain conditions.",
+        ""
+    }
+
     Private Sub ConsoleWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Main.LangManager.AutoApplyLanguage(Me)
-        ConsoleBox.Text = "halogenOS Installer Console" & vbCrLf & _
-            "Copyright (C) 2016 Simao Gomes Viana (xdevs23)" & vbCrLf & _
-            "Copyright (C) 2016 halogenOS" & vbCrLf &  _
-            "This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'." & vbCrLf & _
-            "This is free software, and you are welcome to redistribute it" & vbCrLf & _
-            "under certain conditions" & vbCrLf & vbCrLf & PreEnteredConsoleText
+        Dim FinalPrePrint As String = ""
+        For Each S As String In ConsolePrePrint
+            FinalPrePrint &= S & vbCrLf
+        Next
+        ConsoleBox.Text = FinalPrePrint & PreEnteredConsoleText
         ConsoleBoxStatic = ConsoleBox
     End Sub
 
