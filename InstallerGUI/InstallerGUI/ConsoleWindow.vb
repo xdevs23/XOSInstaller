@@ -19,6 +19,7 @@ Public Class ConsoleWindow
 
     Private Sub ConsoleBox_TextChanged(sender As Object, e As EventArgs) Handles ConsoleBox.TextChanged, ConsoleBox.LostFocus
         ConsoleBox.SelectionLength = 0
+        ConsoleBox.ScrollToCaret()
         HideCaret(ConsoleBox.Handle)
     End Sub
 
