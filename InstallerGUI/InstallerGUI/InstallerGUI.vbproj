@@ -153,6 +153,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="NetUtils.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ConsoleWindow.resx">

@@ -32,8 +32,12 @@ Partial Class Main
         Me.LblDetectingDevice = New System.Windows.Forms.Label()
         Me.BtnShowConsole = New xdui.FlatButton()
         Me.CbxLanguageCh = New System.Windows.Forms.ComboBox()
+        Me.PageCheckInetPanel = New System.Windows.Forms.Panel()
+        Me.LblCheckInet = New System.Windows.Forms.Label()
+        Me.BtnRetryInet = New xdui.FlatButton()
         Me.PageWelcomePanel.SuspendLayout
         Me.PageDetectDevicePanel.SuspendLayout
+        Me.PageCheckInetPanel.SuspendLayout
         Me.SuspendLayout
         '
         'PageWelcomePanel
@@ -126,7 +130,7 @@ Partial Class Main
         Me.PageDetectDevicePanel.Controls.Add(Me.LblDetectingDevice)
         Me.PageDetectDevicePanel.Location = New System.Drawing.Point(87, 95)
         Me.PageDetectDevicePanel.Name = "PageDetectDevicePanel"
-        Me.PageDetectDevicePanel.Size = New System.Drawing.Size(357, 465)
+        Me.PageDetectDevicePanel.Size = New System.Drawing.Size(109, 52)
         Me.PageDetectDevicePanel.TabIndex = 8
         Me.PageDetectDevicePanel.Tag = "1"
         Me.PageDetectDevicePanel.Visible = false
@@ -173,12 +177,52 @@ Partial Class Main
         Me.CbxLanguageCh.Size = New System.Drawing.Size(121, 21)
         Me.CbxLanguageCh.TabIndex = 10
         '
+        'PageCheckInetPanel
+        '
+        Me.PageCheckInetPanel.Controls.Add(Me.BtnRetryInet)
+        Me.PageCheckInetPanel.Controls.Add(Me.LblCheckInet)
+        Me.PageCheckInetPanel.Location = New System.Drawing.Point(203, 95)
+        Me.PageCheckInetPanel.Name = "PageCheckInetPanel"
+        Me.PageCheckInetPanel.Size = New System.Drawing.Size(589, 465)
+        Me.PageCheckInetPanel.TabIndex = 11
+        Me.PageCheckInetPanel.Tag = "2"
+        Me.PageCheckInetPanel.Visible = false
+        '
+        'LblCheckInet
+        '
+        Me.LblCheckInet.AutoSize = true
+        Me.LblCheckInet.Location = New System.Drawing.Point(4, 4)
+        Me.LblCheckInet.Name = "LblCheckInet"
+        Me.LblCheckInet.Size = New System.Drawing.Size(70, 13)
+        Me.LblCheckInet.TabIndex = 0
+        Me.LblCheckInet.Tag = "page_checkinet_checkinet"
+        Me.LblCheckInet.Text = "LblCheckInet"
+        '
+        'BtnRetryInet
+        '
+        Me.BtnRetryInet.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left),System.Windows.Forms.AnchorStyles)
+        Me.BtnRetryInet.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnRetryInet.FlatAppearance.BorderSize = 0
+        Me.BtnRetryInet.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnRetryInet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnRetryInet.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnRetryInet.Font = New System.Drawing.Font("Segoe UI", 10.25!)
+        Me.BtnRetryInet.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.BtnRetryInet.Location = New System.Drawing.Point(3, 439)
+        Me.BtnRetryInet.Name = "BtnRetryInet"
+        Me.BtnRetryInet.Size = New System.Drawing.Size(75, 23)
+        Me.BtnRetryInet.TabIndex = 1
+        Me.BtnRetryInet.Tag = "general_retry"
+        Me.BtnRetryInet.Text = "Retry"
+        Me.BtnRetryInet.UseVisualStyleBackColor = false
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(804, 601)
+        Me.Controls.Add(Me.PageCheckInetPanel)
         Me.Controls.Add(Me.CbxLanguageCh)
         Me.Controls.Add(Me.BtnShowConsole)
         Me.Controls.Add(Me.PageDetectDevicePanel)
@@ -197,6 +241,8 @@ Partial Class Main
         Me.PageWelcomePanel.PerformLayout
         Me.PageDetectDevicePanel.ResumeLayout(false)
         Me.PageDetectDevicePanel.PerformLayout
+        Me.PageCheckInetPanel.ResumeLayout(false)
+        Me.PageCheckInetPanel.PerformLayout
         Me.ResumeLayout(false)
 
 End Sub
@@ -210,4 +256,7 @@ End Sub
     Friend WithEvents LblDetectingDevice As Label
     Friend WithEvents BtnShowConsole As xdui.FlatButton
     Friend WithEvents CbxLanguageCh As ComboBox
+    Friend WithEvents PageCheckInetPanel As Panel
+    Friend WithEvents LblCheckInet As Label
+    Friend WithEvents BtnRetryInet As xdui.FlatButton
 End Class

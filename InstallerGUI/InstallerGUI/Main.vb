@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing.Text
 Imports System.IO
 Imports xdevs23.Localization
+Imports xdlib.Net
 Imports xdui
 
 Public Class Main
@@ -18,7 +19,9 @@ Public Class Main
             STRING_EXIT_CONFIRMATION As String = "confirm_exit",
             STRING_EXIT_CONF_TITLE   As String = "confirm_exit_title",
             STRING_DEVICE_DETECTED   As String = "page_detect_device_detected",
-            STRING_DEVICE_DETECTING  As String = "page_detect_detecting_device"
+            STRING_DEVICE_DETECTING  As String = "page_detect_detecting_device",
+            STRING_INET_CHECKING     As String = "page_checkinet_checkinet",
+            STRING_NO_INET           As String = "page_checkinet_noinet"
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         If MessageBox.Show(LangManager.GetString(STRING_EXIT_CONFIRMATION),
@@ -57,7 +60,23 @@ Public Class Main
                         AdbDetectDeviceTimer.Stop()
                     End If
                 End If
+            Case PageCheckInetPanel.Name
+                LblCheckInet.Tag = STRING_INET_CHECKING
+                LangManager.RefreshLanguage(PageCheckInetPanel)
+                BtnNext.Enabled = False
+                BtnRetryInet.Visible = False
+                If Not Net.NetUtils.IsInternetAvailable() Then
+                    LblCheckInet.Tag = STRING_NO_INET
+                    LangManager.RefreshLanguage(PageCheckInetPanel)
+                    BtnRetryInet.Visible = True
+                    Return
+                End If
+                ChangePage(True)
         End Select
+    End Sub
+
+    Private Sub BtnRetryInet_Click(sender As Object, e As EventArgs) Handles BtnRetryInet.Click
+        HandlePage(PageCheckInetPanel.Name)
     End Sub
 
     Private Sub ChangePage(PageNum As Integer)
