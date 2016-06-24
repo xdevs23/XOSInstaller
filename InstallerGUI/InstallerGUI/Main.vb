@@ -94,7 +94,7 @@ Public Class Main
     End Sub
 
     Private Sub DoAdbDetect()
-        Debug.WriteLine("Detecting device...")
+        Console.WriteLine("Detecting device...")
         AdbHelper.ExecuteAdbCommand("kill-server")
         AdbHelper.ExecuteAdbCommand("start-server")
         AdbHelper.ExecuteAdbCommand("wait-for-device")
@@ -111,6 +111,7 @@ Public Class Main
     End Sub
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Console.WriteLine("Initialization started.")
         Dim sw As New StopWatch
         ' Load fonts
         sw.Start()
