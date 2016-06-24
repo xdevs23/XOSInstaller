@@ -8,12 +8,12 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("InstallerGUI")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("InstallerGUI")>
-<Assembly: AssemblyCopyright("Copyright ©  2016")>
-<Assembly: AssemblyTrademark("")>
+<Assembly: AssemblyTitle("halogenOS Installer")>
+<Assembly: AssemblyDescription("Installer for the Android-based operating system halogenOS")>
+<Assembly: AssemblyCompany("halogenOS")>
+<Assembly: AssemblyProduct("halogenOS Installer")>
+<Assembly: AssemblyCopyright("Copyright © 2016 halogenOS")>
+<Assembly: AssemblyTrademark("halogenOS")>
 
 <Assembly: ComVisible(False)>
 

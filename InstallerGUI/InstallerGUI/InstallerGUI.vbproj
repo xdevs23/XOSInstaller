@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>InstallerGUI.My.MyApplication</StartupObject>
     <RootNamespace>InstallerGUI</RootNamespace>
-    <AssemblyName>InstallerGUI</AssemblyName>
+    <AssemblyName>halogenOS Installer</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -35,7 +35,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>InstallerGUI.xml</DocumentationFile>
+    <DocumentationFile>halogenOS Installer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -45,7 +45,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>InstallerGUI.xml</DocumentationFile>
+    <DocumentationFile>halogenOS Installer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -89,6 +89,9 @@
   <PropertyGroup>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -114,11 +117,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="adb\AdbHelper.vb" />
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Console.vb" />
     <Compile Include="ConsoleWindow.Designer.vb">
       <DependentUpon>ConsoleWindow.vb</DependentUpon>
     </Compile>
     <Compile Include="ConsoleWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmergencyForm.Designer.vb">
+      <DependentUpon>EmergencyForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EmergencyForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Main.vb">
@@ -148,6 +158,9 @@
     <EmbeddedResource Include="ConsoleWindow.resx">
       <DependentUpon>ConsoleWindow.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmergencyForm.resx">
+      <DependentUpon>EmergencyForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
     </EmbeddedResource>
@@ -168,7 +181,7 @@
     <Content Include="lang\de.lang">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="privatekey-orig.pfx" />
+    <None Include="My Project\app.manifest" />
     <None Include="Resources\installer-title-xosi-final.png" />
     <None Include="fonts\Roboto-Black.ttf" />
     <None Include="fonts\Roboto-BlackItalic.ttf" />
