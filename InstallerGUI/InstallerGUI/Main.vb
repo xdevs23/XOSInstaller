@@ -42,6 +42,7 @@ Public Class Main
                     AdbDetectDeviceThread.Start()
                     AdbDetectDeviceTimer.Interval = 2000
                     AdbDetectDeviceTimer.Start()
+                    Throw New Exception("Test")
                     BtnNext.Enabled = False
                     BtnBack.Enabled = False
                 Else
@@ -169,7 +170,7 @@ Public Class Main
         ChangePage(CurrentPage)
     End Sub
 
-    Private Sub Main_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+    Public Sub Main_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         On Error Resume Next ' Force threads to stop without exception
         ' Stop timers
         AdbDetectDeviceTimer.Stop()

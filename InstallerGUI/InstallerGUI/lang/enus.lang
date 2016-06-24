@@ -35,3 +35,10 @@ page_detect_device_detected=Your device was successfully detected.[[LF]][[LF]]Yo
 #
 [Console window]
 conwin_title=Console window
+#
+#
+#
+[Unhandled exception message box]
+unhandled_exception_message=Unfortunately an error occured. To exit the application, press "Cancel". Otherwise, you can take a look into the Console Window or continue the application. Please note, that continuing the application is unstable and can lead to more fatal errors. [[LF]]Do you want to see the log now?
+unhandled_exception_title=Unhandled exception
+mainform_resumed_from_ex=The application has been resumed. To prevent misbehavior, the window has been reloaded.[[LF]]Sorry for any inconveniences![[LF]]You should be able to continue the installation by passing through all steps again.
