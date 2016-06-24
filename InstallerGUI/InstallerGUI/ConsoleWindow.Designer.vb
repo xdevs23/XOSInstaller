@@ -50,6 +50,8 @@ Partial Class ConsoleWindow
         Me.Controls.Add(Me.ConsoleBox)
         Me.Font = New System.Drawing.Font("Consolas", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Name = "ConsoleWindow"
+        Me.ShowIcon = false
+        Me.ShowInTaskbar = false
         Me.Tag = "conwin_title"
         Me.Text = "ConsoleWindow"
         Me.ResumeLayout(false)
