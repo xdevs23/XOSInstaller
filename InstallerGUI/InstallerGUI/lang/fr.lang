@@ -1,0 +1,47 @@
+﻿# Language file for the halogenOS Installer
+# Please don't leave lines blank, make sure the syntax is correct and use comments on their lines:
+#
+# # This is a comment and can be used like this
+# some_key=Some cool translated text
+#
+# But don't do this:
+# some_key=Some cool translated text # ain't a comment
+#
+# To make new lines, use [[LF]]:
+# some_key=Some cool translated text[[LF]]I am on a new line!
+# 
+#
+# Main language details
+lang_locale=fr
+lang_name=French (France)
+# Just an example
+lang_example=Salut! 
+# The title of the main window
+mainform_title=halogenOS Installer
+[General stuff]
+general_next=Suivant
+general_cancel=Annuler
+general_back=Retour
+general_retry=Réessayer
+confirm_exit=Êtes-vous vous sûrs de vouloir quitter l'application?
+confirm_exit_title=Annuler la progression
+[Main form]
+mainform_showconsole=Afficher la console
+[Pages]1
+page_welcome_welcometext=Bienvenue sur l'installateur d'HalogenOS ![[LF]]Ce programme vous guidera tout au long de l'installation d'HalogenOSet et fera le nécessaire pour l'installer sur votre téléphone ![[LF]][[LF]]Nous sommes certains que vous l'adorerez ! 
+page_detect_detecting_device=Détection de l'appareil...[[LF]][[LF]]Nous essayons de détecter votre appareil Android[[LF]]Merci de vérifier que vous avez bien activé 'Débogage USB' Dans Paramètres -> Options pour les développeurs pour que le processus de détection se termine correctement.[[LF]][[LF]][[LF]][[LF]]Connectez votre appareil pour continuer. 
+page_detect_device_detected=Votre appareil est correctement détecté.[[LF]][[LF]]Vous pouvez maintenant cliquer sur 'Suivant' pour continuer.
+page_checkinet_checkinet=Vérification de la connection internet...
+page_checkinet_noinet=Pas de connection internet disponible.[[LF]][[LF]]Merci de vérifier que vous êtes bien connecté-e à internet puis réessayez.
+#
+#
+#
+[Console window]
+conwin_title=Fenêtre de console
+#
+#
+#
+[Unhandled exception message box]
+unhandled_exception_message=Malheureusement une erreur s'est produite. Pour quitter l'application, appuyez sur "Annuler". Autrement, vous pouvez consulter la fenêtre de console ou continuer d'utiliser l'application. Soyez conscient-e-s que de continuer à utiliser l'application peut provoquer une instabilité et conduire à plus d'erreurs fatales. [[LF]]Souhaiteriez vous consulter le journal maintenant ? 
+unhandled_exception_title=Exception non gérée
+mainform_resumed_from_ex=L'application a bien été résumée. Pour éviter toute anomalie, la fenêtre a été rechargée.[[LF]]Veuillez nous excuser du dérangement ![[LF]]Vous devriez être en mesure de poursuivre l'installation en passant par l'ensemble des étapes. 
