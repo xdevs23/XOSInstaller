@@ -160,6 +160,9 @@ Public Class Main
             If TypeOf (C) Is Panel AndAlso C.Name.Contains("Page") Then
                 C.Size = New Size(800, 420) ' Have the same size for all panels
                 C.Location = New Point(2, 94)
+                For Each Cx As Control In C.Controls
+                    If TypeOf (Cx) Is Label Then Cx.MaximumSize = New Size(C.Width, C.Height)
+                Next
             End If
             If TypeOf (C) Is FlatButton Then
                 C.Font = Font
