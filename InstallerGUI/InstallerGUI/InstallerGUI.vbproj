@@ -182,6 +182,9 @@
     <Content Include="lang\de.lang">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="lang\fr.lang">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="My Project\app.manifest" />
     <None Include="Resources\installer-title-xosi-final.png" />
     <None Include="fonts\Roboto-Black.ttf" />
