@@ -64,7 +64,7 @@ Public Class DownloadManager
     End Function
 
     Public Class DownloadStatusListener
-        Public Delegate Sub OnDownloadCompletedDelegate(Success As Boolean, Exception As Exception, WasCancelled As Boolean)
+        Public Delegate Sub OnDownloadCompletedDelegate(Success As Boolean, Ex As Exception, WasCancelled As Boolean)
         Public Delegate Sub OnProgressChangedDelegate(Progress As Integer, BytesReceived As Long, BytesToReceive As Long)
         Public Delegate Sub OnDownloadStringCompletedDelegate(ReceivedString As String)
     End Class
