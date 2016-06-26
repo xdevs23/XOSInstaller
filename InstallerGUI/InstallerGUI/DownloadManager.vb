@@ -11,6 +11,7 @@ Public Class DownloadManager
         StringCompletedListener As DownloadStatusListener.OnDownloadStringCompletedDelegate
 
     Public Sub New()
+        Console.WriteLine()
         Console.WriteLine("Initializing a new download manager...")
         DlWebClient = New WebClient()
         DlWebClient.Encoding = Encoding.UTF8
@@ -18,6 +19,7 @@ Public Class DownloadManager
     End Sub
 
     Private Sub DlWebClient_DownloadFileCompleted(sender As Object, e As AsyncCompletedEventArgs) Handles DlWebClient.DownloadFileCompleted
+        Console.WriteLine()
         If Not IsNothing(CompletedListener) Then CompletedListener.Invoke(IsNothing(e.Error), e.Error, e.Cancelled)
         CompletedListener = Nothing
     End Sub
