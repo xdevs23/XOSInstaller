@@ -15,7 +15,7 @@ Namespace Localization
             Loader = New LanguageLoader()
             Loader.LoadLanguages()
             Loader.SetDefaultLanguage(LocalName)
-            WantedForm.Text = Loader.GetDefaultLanguage().GetValue(WantedForm.Tag)
+            WantedForm.Text = Loader.GetDefaultLanguage().GetValue(WantedForm.Tag.ToString())
             RefreshLanguage(WantedForm)
         End Sub
 
