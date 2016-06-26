@@ -5,7 +5,10 @@ Imports System.Text
 Public Class DownloadManager
 
     Public WithEvents DlWebClient As WebClient
-    Public StatusListener As DownloadStatusListener
+    Public _
+        CompletedListener As DownloadStatusListener.OnDownloadCompletedDelegate,
+        ProgressChangeListener As DownloadStatusListener.OnProgressChangedDelegate,
+        StringCompletedListener As DownloadStatusListener.OnDownloadStringCompletedDelegate
 
     Public Sub New()
         Console.WriteLine("Initializing a new download manager...")
@@ -15,24 +18,27 @@ Public Class DownloadManager
     End Sub
 
     Private Sub DlWebClient_DownloadFileCompleted(sender As Object, e As AsyncCompletedEventArgs) Handles DlWebClient.DownloadFileCompleted
-        StatusListener.OnDownloadCompleted(IsNothing(e.Error), e.Error, e.Cancelled)
-        StatusListener = Nothing
+        If Not IsNothing(CompletedListener) Then CompletedListener.Invoke(IsNothing(e.Error), e.Error, e.Cancelled)
+        CompletedListener = Nothing
     End Sub
 
     Private Sub DlWebClient_DownloadProgressChanged(sender As Object, e As DownloadProgressChangedEventArgs) Handles DlWebClient.DownloadProgressChanged
-        StatusListener.OnProgressChanged(e.ProgressPercentage, e.BytesReceived, e.TotalBytesToReceive)
+        If Not IsNothing(ProgressChangeListener) Then ProgressChangeListener.Invoke(e.ProgressPercentage, e.BytesReceived, e.TotalBytesToReceive)
     End Sub
 
     Private Sub DlWebClient_DownloadStringCompleted(sender As Object, e As DownloadStringCompletedEventArgs) Handles DlWebClient.DownloadStringCompleted
-        StatusListener.OnDownloadCompleted(IsNothing(e.Error), e.Error, e.Cancelled)
-        StatusListener.OnDownloadStringCompleted(e.Result)
-        StatusListener = Nothing
+        If Not IsNothing(CompletedListener) Then CompletedListener.Invoke(IsNothing(e.Error), e.Error, e.Cancelled)
+        If Not IsNothing(StringCompletedListener) Then StringCompletedListener.Invoke(e.Result)
+        CompletedListener = Nothing
+        StringCompletedListener = Nothing
     End Sub
 
     Public Function DownloadFile(Url As String, Filename As String,
-                                 Optional Listener As DownloadStatusListener = Nothing) As Boolean
+                                 Optional OnCompletedListener As DownloadStatusListener.OnDownloadCompletedDelegate = Nothing,
+                                 Optional OnProgressChangeListener As DownloadStatusListener.OnProgressChangedDelegate = Nothing) As Boolean
         Console.WriteLine("Starting download of """ & Url & """ to """ & Filename & """")
-        StatusListener = Listener
+        CompletedListener = OnCompletedListener
+        OnProgressChangeListener = OnProgressChangeListener
         Try
             DlWebClient.DownloadFileAsync(New Uri(Url), FileName)
             Return True
@@ -41,9 +47,14 @@ Public Class DownloadManager
         End Try
     End Function
 
-    Public Function DownloadString(Url As String, Listener As DownloadStatusListener) As Boolean
+    Public Function DownloadString(Url As String, 
+                                            OnReceiveListener As DownloadStatusListener.OnDownloadStringCompletedDelegate,
+                                   Optional OnProgressChangeListener As DownloadStatusListener.OnProgressChangedDelegate = Nothing,
+                                   Optional OnCompletedListener As DownloadStatusListener.OnDownloadCompletedDelegate = Nothing) As Boolean
         Console.WriteLine("Starting download of """ & Url & """")
-        StatusListener = Listener
+        StringCompletedListener = OnReceiveListener
+        ProgressChangeListener  = OnProgressChangeListener
+        CompletedListener       = OnCompletedListener
         Try
             DlWebClient.DownloadStringAsync(New Uri(Url))
             Return True
@@ -52,10 +63,10 @@ Public Class DownloadManager
         End Try
     End Function
 
-    Public Interface DownloadStatusListener
-        Sub OnDownloadCompleted(Success As Boolean, Exception As Exception, WasCancelled As Boolean)
-        Sub OnProgressChanged(Progress As Integer, BytesReceived As Long, BytesToReceive As Long)
-        Sub OnDownloadStringCompleted(ReceivedString As String)
-    End Interface
+    Public Class DownloadStatusListener
+        Public Delegate Sub OnDownloadCompletedDelegate(Success As Boolean, Exception As Exception, WasCancelled As Boolean)
+        Public Delegate Sub OnProgressChangedDelegate(Progress As Integer, BytesReceived As Long, BytesToReceive As Long)
+        Public Delegate Sub OnDownloadStringCompletedDelegate(ReceivedString As String)
+    End Class
 
 End Class
