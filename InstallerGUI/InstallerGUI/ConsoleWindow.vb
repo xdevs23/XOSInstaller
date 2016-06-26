@@ -6,6 +6,11 @@ Public Class ConsoleWindow
     Private Shared Sub HideCaret(ByVal hWnd As IntPtr)
     End Sub
 
+    Private Shared Sub HideCaret(ByRef TB As TextBox)
+        If Not My.Computer.Info.OSFullName.Contains("UNIX") Then _
+            HideCaret(TB.Handle)
+    End Sub
+
     Private Shared PreEnteredConsoleText As String
     Private Shared ConsoleBoxStatic As TextBox
 
@@ -34,11 +39,11 @@ Public Class ConsoleWindow
     Private Sub ConsoleBox_TextChanged(sender As Object, e As EventArgs) Handles ConsoleBox.TextChanged, ConsoleBox.LostFocus
         ConsoleBox.SelectionLength = 0
         ConsoleBox.ScrollToCaret()
-        HideCaret(ConsoleBox.Handle)
+        HideCaret(ConsoleBox)
     End Sub
 
     Private Sub ConsoleBox_SelectionEnd(sender As Object, e As EventArgs) Handles ConsoleBox.Leave, ConsoleBox.MouseLeave
-        HideCaret(ConsoleBox.Handle)
+        HideCaret(ConsoleBox)
     End Sub
 
     Private Delegate Sub AppendTextBoxDelegate(ByVal TB As TextBox, ByVal txt As String)
