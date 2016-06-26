@@ -21,7 +21,9 @@ Public Class LabelUpdater
     End Sub
 
     Public Shared Sub UpdateLabel(Lbl As Label, ParamArray Texts As String())
-        UpdateLabel(Lbl, String.Format(LM.GetString(Lbl.Tag.ToString()), Texts))
+        UpdateLabel(Lbl, String.Format(LM.GetString(Lbl.Tag.ToString()), 
+                                       IIf(Texts(0).StartsWith("==") And Texts(0).EndsWith("=="),
+                                           LM.GetString(Texts(0).Replace("==", "")), Texts)))
     End Sub
 
 End Class
