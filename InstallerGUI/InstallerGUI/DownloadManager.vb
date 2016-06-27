@@ -12,6 +12,8 @@ Public Class DownloadManager
 
     Private CurrentBytesToReceive As Long = 0
     Private CurrentBytesReceived  As Long = 0
+    
+    Private UrlToDownload, FileNameToDownload As String
 
     Public Sub New()
         Console.WriteLine()
@@ -75,6 +77,32 @@ Public Class DownloadManager
             Return False
         End Try
     End Function
+
+    Private Sub SetOnDownloadCompletedListener(OnCompletedListener As DownloadStatusListener.OnDownloadCompletedDelegate)
+        CompletedListener = OnCompletedListener
+    End Sub
+
+    Private Sub SetOnProgressChangeListener(OnProgressChangeListener As DownloadStatusListener.OnProgressChangedDelegate)
+        ProgressChangeListener = OnProgressChangeListener
+    End Sub
+
+    Public Sub SetListeners(OnCompletedListener As DownloadStatusListener.OnDownloadCompletedDelegate,
+                            OnProgressChangeListener As DownloadStatusListener.OnProgressChangedDelegate)
+        SetOnDownloadCompletedListener  (OnCompletedListener)
+        SetOnProgressChangeListener     (OnProgressChangeListener)
+    End Sub
+
+    Public Sub SetDownloadFile(Url As String, Filename As String)
+        UrlToDownload = Url
+        FileNameToDownload = Filename
+    End Sub
+
+    Public Sub StartDownload()
+        If UrlToDownload.Equals("") Or FileNameToDownload.Equals("") Then Return
+        DownloadFile(UrlToDownload, FileNameToDownload, CompletedListener, ProgressChangeListener)
+        UrlToDownload       = ""
+        FileNameToDownload  = ""
+    End Sub
 
     Public Class DownloadStatusListener
         Public Delegate Sub OnDownloadCompletedDelegate(Success As Boolean, Ex As Exception, WasCancelled As Boolean)
