@@ -49,6 +49,7 @@ Public Class ConsoleWindow
     Private Delegate Sub AppendTextBoxDelegate(ByVal TB As TextBox, ByVal txt As String)
 
     Private Shared Sub AppendTextBox(ByVal TB As TextBox, ByVal txt As String)
+        On Error Resume Next
         If TB.InvokeRequired Then
             TB.Invoke(New AppendTextBoxDelegate(AddressOf AppendTextBox), New Object() {TB, txt})
         Else

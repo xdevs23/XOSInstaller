@@ -32,24 +32,36 @@ Partial Class Main
         Me.BtnRetryInet = New xdui.FlatButton()
         Me.LblCheckInet = New System.Windows.Forms.Label()
         Me.PageDlStuffPanel = New System.Windows.Forms.Panel()
-        Me.LblDlStuffTotal = New System.Windows.Forms.Label()
-        Me.PrgDlStuffTotal = New xdui.FlatProgressBar()
-        Me.PrgDlStuff = New xdui.FlatProgressBar()
+        Me.LblDeviceNotSupported = New System.Windows.Forms.Label()
+        Me.BtnRetryDlStuff = New xdui.FlatButton()
+        Me.PanelDownloadStuff = New System.Windows.Forms.Panel()
+        Me.LblDlStuffTotalPrg = New System.Windows.Forms.Label()
+        Me.LblDlStuffStatusPrg = New System.Windows.Forms.Label()
         Me.LblDlStuffStatus = New System.Windows.Forms.Label()
+        Me.LblDlStuffTotal = New System.Windows.Forms.Label()
+        Me.PrgDlStuff = New xdui.FlatProgressBar()
+        Me.PrgDlStuffTotal = New xdui.FlatProgressBar()
         Me.BtnShowConsole = New xdui.FlatButton()
         Me.BtnCancel = New xdui.FlatButton()
         Me.BtnBack = New xdui.FlatButton()
         Me.BtnNext = New xdui.FlatButton()
-        Me.PanelDownloadStuff = New System.Windows.Forms.Panel()
-        Me.BtnRetryDlStuff = New xdui.FlatButton()
-        Me.LblDeviceNotSupported = New System.Windows.Forms.Label()
-        Me.LblDlStuffStatusPrg = New System.Windows.Forms.Label()
-        Me.LblDlStuffTotalPrg = New System.Windows.Forms.Label()
+        Me.PageDlRomPanel = New System.Windows.Forms.Panel()
+        Me.BtnRetryDlRom = New xdui.FlatButton()
+        Me.PanelDlRomPrg = New System.Windows.Forms.Panel()
+        Me.LblDlRomTotalPrg = New System.Windows.Forms.Label()
+        Me.LblDlRomStatusPrg = New System.Windows.Forms.Label()
+        Me.LblDlRomStatus = New System.Windows.Forms.Label()
+        Me.LblDlRomTotal = New System.Windows.Forms.Label()
+        Me.PrgDlRomStatus = New xdui.FlatProgressBar()
+        Me.PrgDlRomTotal = New xdui.FlatProgressBar()
+        Me.LblDlRomStatusBPrg = New System.Windows.Forms.Label()
         Me.PageWelcomePanel.SuspendLayout
         Me.PageDetectDevicePanel.SuspendLayout
         Me.PageCheckInetPanel.SuspendLayout
         Me.PageDlStuffPanel.SuspendLayout
         Me.PanelDownloadStuff.SuspendLayout
+        Me.PageDlRomPanel.SuspendLayout
+        Me.PanelDlRomPrg.SuspendLayout
         Me.SuspendLayout
         '
         'PageWelcomePanel
@@ -162,12 +174,90 @@ Partial Class Main
         Me.PageDlStuffPanel.Controls.Add(Me.LblDeviceNotSupported)
         Me.PageDlStuffPanel.Controls.Add(Me.BtnRetryDlStuff)
         Me.PageDlStuffPanel.Controls.Add(Me.PanelDownloadStuff)
-        Me.PageDlStuffPanel.Location = New System.Drawing.Point(295, 95)
+        Me.PageDlStuffPanel.Location = New System.Drawing.Point(294, 95)
         Me.PageDlStuffPanel.Name = "PageDlStuffPanel"
-        Me.PageDlStuffPanel.Size = New System.Drawing.Size(497, 465)
+        Me.PageDlStuffPanel.Size = New System.Drawing.Size(86, 52)
         Me.PageDlStuffPanel.TabIndex = 12
         Me.PageDlStuffPanel.Tag = "3"
         Me.PageDlStuffPanel.Visible = false
+        '
+        'LblDeviceNotSupported
+        '
+        Me.LblDeviceNotSupported.AutoSize = true
+        Me.LblDeviceNotSupported.Location = New System.Drawing.Point(9, 26)
+        Me.LblDeviceNotSupported.Name = "LblDeviceNotSupported"
+        Me.LblDeviceNotSupported.Size = New System.Drawing.Size(109, 13)
+        Me.LblDeviceNotSupported.TabIndex = 6
+        Me.LblDeviceNotSupported.Tag = "page_dlstuff_device_not_supported"
+        Me.LblDeviceNotSupported.Text = "Device not supported"
+        Me.LblDeviceNotSupported.Visible = false
+        '
+        'BtnRetryDlStuff
+        '
+        Me.BtnRetryDlStuff.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left),System.Windows.Forms.AnchorStyles)
+        Me.BtnRetryDlStuff.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnRetryDlStuff.FlatAppearance.BorderSize = 0
+        Me.BtnRetryDlStuff.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnRetryDlStuff.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnRetryDlStuff.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnRetryDlStuff.Font = New System.Drawing.Font("Segoe UI", 10.25!)
+        Me.BtnRetryDlStuff.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.BtnRetryDlStuff.Location = New System.Drawing.Point(3, 26)
+        Me.BtnRetryDlStuff.Name = "BtnRetryDlStuff"
+        Me.BtnRetryDlStuff.Size = New System.Drawing.Size(75, 23)
+        Me.BtnRetryDlStuff.TabIndex = 5
+        Me.BtnRetryDlStuff.Tag = "general_retry"
+        Me.BtnRetryDlStuff.Text = "Retry"
+        Me.BtnRetryDlStuff.UseVisualStyleBackColor = false
+        Me.BtnRetryDlStuff.Visible = false
+        '
+        'PanelDownloadStuff
+        '
+        Me.PanelDownloadStuff.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
+            Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.PanelDownloadStuff.BackColor = System.Drawing.Color.Transparent
+        Me.PanelDownloadStuff.Controls.Add(Me.LblDlStuffTotalPrg)
+        Me.PanelDownloadStuff.Controls.Add(Me.LblDlStuffStatusPrg)
+        Me.PanelDownloadStuff.Controls.Add(Me.LblDlStuffStatus)
+        Me.PanelDownloadStuff.Controls.Add(Me.LblDlStuffTotal)
+        Me.PanelDownloadStuff.Controls.Add(Me.PrgDlStuff)
+        Me.PanelDownloadStuff.Controls.Add(Me.PrgDlStuffTotal)
+        Me.PanelDownloadStuff.Location = New System.Drawing.Point(3, 75)
+        Me.PanelDownloadStuff.Name = "PanelDownloadStuff"
+        Me.PanelDownloadStuff.Size = New System.Drawing.Size(80, 100)
+        Me.PanelDownloadStuff.TabIndex = 4
+        '
+        'LblDlStuffTotalPrg
+        '
+        Me.LblDlStuffTotalPrg.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.LblDlStuffTotalPrg.AutoSize = true
+        Me.LblDlStuffTotalPrg.Location = New System.Drawing.Point(41, 45)
+        Me.LblDlStuffTotalPrg.Name = "LblDlStuffTotalPrg"
+        Me.LblDlStuffTotalPrg.Size = New System.Drawing.Size(36, 13)
+        Me.LblDlStuffTotalPrg.TabIndex = 5
+        Me.LblDlStuffTotalPrg.Text = "100 %"
+        Me.LblDlStuffTotalPrg.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LblDlStuffStatusPrg
+        '
+        Me.LblDlStuffStatusPrg.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.LblDlStuffStatusPrg.AutoSize = true
+        Me.LblDlStuffStatusPrg.Location = New System.Drawing.Point(41, 1)
+        Me.LblDlStuffStatusPrg.Name = "LblDlStuffStatusPrg"
+        Me.LblDlStuffStatusPrg.Size = New System.Drawing.Size(36, 13)
+        Me.LblDlStuffStatusPrg.TabIndex = 4
+        Me.LblDlStuffStatusPrg.Text = "100 %"
+        Me.LblDlStuffStatusPrg.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LblDlStuffStatus
+        '
+        Me.LblDlStuffStatus.AutoSize = true
+        Me.LblDlStuffStatus.Location = New System.Drawing.Point(3, 0)
+        Me.LblDlStuffStatus.Name = "LblDlStuffStatus"
+        Me.LblDlStuffStatus.Size = New System.Drawing.Size(78, 13)
+        Me.LblDlStuffStatus.TabIndex = 0
+        Me.LblDlStuffStatus.Tag = "page_dlstuff_downloading"
+        Me.LblDlStuffStatus.Text = "Downloading..."
         '
         'LblDlStuffTotal
         '
@@ -179,16 +269,6 @@ Partial Class Main
         Me.LblDlStuffTotal.Tag = "page_dlstuff_total"
         Me.LblDlStuffTotal.Text = "Total progress"
         '
-        'PrgDlStuffTotal
-        '
-        Me.PrgDlStuffTotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
-            Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
-        Me.PrgDlStuffTotal.BackColor = System.Drawing.Color.Transparent
-        Me.PrgDlStuffTotal.Location = New System.Drawing.Point(6, 61)
-        Me.PrgDlStuffTotal.Name = "PrgDlStuffTotal"
-        Me.PrgDlStuffTotal.Size = New System.Drawing.Size(482, 14)
-        Me.PrgDlStuffTotal.TabIndex = 2
-        '
         'PrgDlStuff
         '
         Me.PrgDlStuff.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
@@ -196,18 +276,18 @@ Partial Class Main
         Me.PrgDlStuff.BackColor = System.Drawing.Color.Transparent
         Me.PrgDlStuff.Location = New System.Drawing.Point(6, 17)
         Me.PrgDlStuff.Name = "PrgDlStuff"
-        Me.PrgDlStuff.Size = New System.Drawing.Size(482, 14)
+        Me.PrgDlStuff.Size = New System.Drawing.Size(71, 14)
         Me.PrgDlStuff.TabIndex = 1
         '
-        'LblDlStuffStatus
+        'PrgDlStuffTotal
         '
-        Me.LblDlStuffStatus.AutoSize = true
-        Me.LblDlStuffStatus.Location = New System.Drawing.Point(3, 0)
-        Me.LblDlStuffStatus.Name = "LblDlStuffStatus"
-        Me.LblDlStuffStatus.Size = New System.Drawing.Size(78, 13)
-        Me.LblDlStuffStatus.TabIndex = 0
-        Me.LblDlStuffStatus.Tag = "page_dlstuff_downloading"
-        Me.LblDlStuffStatus.Text = "Downloading..."
+        Me.PrgDlStuffTotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
+            Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.PrgDlStuffTotal.BackColor = System.Drawing.Color.Transparent
+        Me.PrgDlStuffTotal.Location = New System.Drawing.Point(6, 61)
+        Me.PrgDlStuffTotal.Name = "PrgDlStuffTotal"
+        Me.PrgDlStuffTotal.Size = New System.Drawing.Size(71, 14)
+        Me.PrgDlStuffTotal.TabIndex = 2
         '
         'BtnShowConsole
         '
@@ -281,73 +361,123 @@ Partial Class Main
         Me.BtnNext.Text = "Next"
         Me.BtnNext.UseVisualStyleBackColor = false
         '
-        'PanelDownloadStuff
+        'PageDlRomPanel
         '
-        Me.PanelDownloadStuff.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
+        Me.PageDlRomPanel.Controls.Add(Me.BtnRetryDlRom)
+        Me.PageDlRomPanel.Controls.Add(Me.PanelDlRomPrg)
+        Me.PageDlRomPanel.Location = New System.Drawing.Point(2, 153)
+        Me.PageDlRomPanel.Name = "PageDlRomPanel"
+        Me.PageDlRomPanel.Size = New System.Drawing.Size(790, 407)
+        Me.PageDlRomPanel.TabIndex = 13
+        Me.PageDlRomPanel.Tag = "4"
+        Me.PageDlRomPanel.Visible = false
+        '
+        'BtnRetryDlRom
+        '
+        Me.BtnRetryDlRom.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left),System.Windows.Forms.AnchorStyles)
+        Me.BtnRetryDlRom.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnRetryDlRom.FlatAppearance.BorderSize = 0
+        Me.BtnRetryDlRom.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnRetryDlRom.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnRetryDlRom.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnRetryDlRom.Font = New System.Drawing.Font("Segoe UI", 10.25!)
+        Me.BtnRetryDlRom.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.BtnRetryDlRom.Location = New System.Drawing.Point(3, 381)
+        Me.BtnRetryDlRom.Name = "BtnRetryDlRom"
+        Me.BtnRetryDlRom.Size = New System.Drawing.Size(75, 23)
+        Me.BtnRetryDlRom.TabIndex = 5
+        Me.BtnRetryDlRom.Tag = "general_retry"
+        Me.BtnRetryDlRom.Text = "Retry"
+        Me.BtnRetryDlRom.UseVisualStyleBackColor = false
+        Me.BtnRetryDlRom.Visible = false
+        '
+        'PanelDlRomPrg
+        '
+        Me.PanelDlRomPrg.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
             Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
-        Me.PanelDownloadStuff.BackColor = System.Drawing.Color.Transparent
-        Me.PanelDownloadStuff.Controls.Add(Me.LblDlStuffTotalPrg)
-        Me.PanelDownloadStuff.Controls.Add(Me.LblDlStuffStatusPrg)
-        Me.PanelDownloadStuff.Controls.Add(Me.LblDlStuffStatus)
-        Me.PanelDownloadStuff.Controls.Add(Me.LblDlStuffTotal)
-        Me.PanelDownloadStuff.Controls.Add(Me.PrgDlStuff)
-        Me.PanelDownloadStuff.Controls.Add(Me.PrgDlStuffTotal)
-        Me.PanelDownloadStuff.Location = New System.Drawing.Point(3, 75)
-        Me.PanelDownloadStuff.Name = "PanelDownloadStuff"
-        Me.PanelDownloadStuff.Size = New System.Drawing.Size(491, 100)
-        Me.PanelDownloadStuff.TabIndex = 4
+        Me.PanelDlRomPrg.BackColor = System.Drawing.Color.Transparent
+        Me.PanelDlRomPrg.Controls.Add(Me.LblDlRomStatusBPrg)
+        Me.PanelDlRomPrg.Controls.Add(Me.LblDlRomTotalPrg)
+        Me.PanelDlRomPrg.Controls.Add(Me.LblDlRomStatusPrg)
+        Me.PanelDlRomPrg.Controls.Add(Me.LblDlRomStatus)
+        Me.PanelDlRomPrg.Controls.Add(Me.LblDlRomTotal)
+        Me.PanelDlRomPrg.Controls.Add(Me.PrgDlRomStatus)
+        Me.PanelDlRomPrg.Controls.Add(Me.PrgDlRomTotal)
+        Me.PanelDlRomPrg.Location = New System.Drawing.Point(3, 75)
+        Me.PanelDlRomPrg.Name = "PanelDlRomPrg"
+        Me.PanelDlRomPrg.Size = New System.Drawing.Size(784, 100)
+        Me.PanelDlRomPrg.TabIndex = 4
         '
-        'BtnRetryDlStuff
+        'LblDlRomTotalPrg
         '
-        Me.BtnRetryDlStuff.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left),System.Windows.Forms.AnchorStyles)
-        Me.BtnRetryDlStuff.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnRetryDlStuff.FlatAppearance.BorderSize = 0
-        Me.BtnRetryDlStuff.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnRetryDlStuff.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnRetryDlStuff.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnRetryDlStuff.Font = New System.Drawing.Font("Segoe UI", 10.25!)
-        Me.BtnRetryDlStuff.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
-        Me.BtnRetryDlStuff.Location = New System.Drawing.Point(3, 439)
-        Me.BtnRetryDlStuff.Name = "BtnRetryDlStuff"
-        Me.BtnRetryDlStuff.Size = New System.Drawing.Size(75, 23)
-        Me.BtnRetryDlStuff.TabIndex = 5
-        Me.BtnRetryDlStuff.Tag = "general_retry"
-        Me.BtnRetryDlStuff.Text = "Retry"
-        Me.BtnRetryDlStuff.UseVisualStyleBackColor = false
-        Me.BtnRetryDlStuff.Visible = false
+        Me.LblDlRomTotalPrg.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.LblDlRomTotalPrg.AutoSize = true
+        Me.LblDlRomTotalPrg.Location = New System.Drawing.Point(745, 45)
+        Me.LblDlRomTotalPrg.Name = "LblDlRomTotalPrg"
+        Me.LblDlRomTotalPrg.Size = New System.Drawing.Size(36, 13)
+        Me.LblDlRomTotalPrg.TabIndex = 5
+        Me.LblDlRomTotalPrg.Text = "100 %"
+        Me.LblDlRomTotalPrg.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'LblDeviceNotSupported
+        'LblDlRomStatusPrg
         '
-        Me.LblDeviceNotSupported.AutoSize = true
-        Me.LblDeviceNotSupported.Location = New System.Drawing.Point(9, 26)
-        Me.LblDeviceNotSupported.Name = "LblDeviceNotSupported"
-        Me.LblDeviceNotSupported.Size = New System.Drawing.Size(109, 13)
-        Me.LblDeviceNotSupported.TabIndex = 6
-        Me.LblDeviceNotSupported.Tag = "page_dlstuff_device_not_supported"
-        Me.LblDeviceNotSupported.Text = "Device not supported"
-        Me.LblDeviceNotSupported.Visible = false
+        Me.LblDlRomStatusPrg.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.LblDlRomStatusPrg.AutoSize = true
+        Me.LblDlRomStatusPrg.Location = New System.Drawing.Point(745, 1)
+        Me.LblDlRomStatusPrg.Name = "LblDlRomStatusPrg"
+        Me.LblDlRomStatusPrg.Size = New System.Drawing.Size(36, 13)
+        Me.LblDlRomStatusPrg.TabIndex = 4
+        Me.LblDlRomStatusPrg.Text = "100 %"
+        Me.LblDlRomStatusPrg.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'LblDlStuffStatusPrg
+        'LblDlRomStatus
         '
-        Me.LblDlStuffStatusPrg.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
-        Me.LblDlStuffStatusPrg.AutoSize = true
-        Me.LblDlStuffStatusPrg.Location = New System.Drawing.Point(452, 1)
-        Me.LblDlStuffStatusPrg.Name = "LblDlStuffStatusPrg"
-        Me.LblDlStuffStatusPrg.Size = New System.Drawing.Size(36, 13)
-        Me.LblDlStuffStatusPrg.TabIndex = 4
-        Me.LblDlStuffStatusPrg.Text = "100 %"
-        Me.LblDlStuffStatusPrg.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LblDlRomStatus.AutoSize = true
+        Me.LblDlRomStatus.Location = New System.Drawing.Point(3, 0)
+        Me.LblDlRomStatus.Name = "LblDlRomStatus"
+        Me.LblDlRomStatus.Size = New System.Drawing.Size(78, 13)
+        Me.LblDlRomStatus.TabIndex = 0
+        Me.LblDlRomStatus.Tag = "page_dlstuff_downloading"
+        Me.LblDlRomStatus.Text = "Downloading..."
         '
-        'LblDlStuffTotalPrg
+        'LblDlRomTotal
         '
-        Me.LblDlStuffTotalPrg.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
-        Me.LblDlStuffTotalPrg.AutoSize = true
-        Me.LblDlStuffTotalPrg.Location = New System.Drawing.Point(452, 45)
-        Me.LblDlStuffTotalPrg.Name = "LblDlStuffTotalPrg"
-        Me.LblDlStuffTotalPrg.Size = New System.Drawing.Size(36, 13)
-        Me.LblDlStuffTotalPrg.TabIndex = 5
-        Me.LblDlStuffTotalPrg.Text = "100 %"
-        Me.LblDlStuffTotalPrg.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LblDlRomTotal.AutoSize = true
+        Me.LblDlRomTotal.Location = New System.Drawing.Point(3, 45)
+        Me.LblDlRomTotal.Name = "LblDlRomTotal"
+        Me.LblDlRomTotal.Size = New System.Drawing.Size(74, 13)
+        Me.LblDlRomTotal.TabIndex = 3
+        Me.LblDlRomTotal.Tag = "page_dlstuff_total"
+        Me.LblDlRomTotal.Text = "Total progress"
+        '
+        'PrgDlRomStatus
+        '
+        Me.PrgDlRomStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
+            Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.PrgDlRomStatus.BackColor = System.Drawing.Color.Transparent
+        Me.PrgDlRomStatus.Location = New System.Drawing.Point(6, 17)
+        Me.PrgDlRomStatus.Name = "PrgDlRomStatus"
+        Me.PrgDlRomStatus.Size = New System.Drawing.Size(775, 14)
+        Me.PrgDlRomStatus.TabIndex = 1
+        '
+        'PrgDlRomTotal
+        '
+        Me.PrgDlRomTotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
+            Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.PrgDlRomTotal.BackColor = System.Drawing.Color.Transparent
+        Me.PrgDlRomTotal.Location = New System.Drawing.Point(6, 61)
+        Me.PrgDlRomTotal.Name = "PrgDlRomTotal"
+        Me.PrgDlRomTotal.Size = New System.Drawing.Size(775, 14)
+        Me.PrgDlRomTotal.TabIndex = 2
+        '
+        'LblDlRomStatusBPrg
+        '
+        Me.LblDlRomStatusBPrg.AutoSize = true
+        Me.LblDlRomStatusBPrg.Location = New System.Drawing.Point(576, 1)
+        Me.LblDlRomStatusBPrg.Name = "LblDlRomStatusBPrg"
+        Me.LblDlRomStatusBPrg.Size = New System.Drawing.Size(51, 13)
+        Me.LblDlRomStatusBPrg.TabIndex = 6
+        Me.LblDlRomStatusBPrg.Text = "0 / 0 MiB"
         '
         'Main
         '
@@ -355,6 +485,7 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(804, 601)
+        Me.Controls.Add(Me.PageDlRomPanel)
         Me.Controls.Add(Me.PageDlStuffPanel)
         Me.Controls.Add(Me.PageCheckInetPanel)
         Me.Controls.Add(Me.CbxLanguageCh)
@@ -381,6 +512,9 @@ Partial Class Main
         Me.PageDlStuffPanel.PerformLayout
         Me.PanelDownloadStuff.ResumeLayout(false)
         Me.PanelDownloadStuff.PerformLayout
+        Me.PageDlRomPanel.ResumeLayout(false)
+        Me.PanelDlRomPrg.ResumeLayout(false)
+        Me.PanelDlRomPrg.PerformLayout
         Me.ResumeLayout(false)
 
 End Sub
@@ -407,4 +541,14 @@ End Sub
     Friend WithEvents LblDeviceNotSupported As Label
     Friend WithEvents LblDlStuffTotalPrg As Label
     Friend WithEvents LblDlStuffStatusPrg As Label
+    Friend WithEvents PageDlRomPanel As Panel
+    Friend WithEvents BtnRetryDlRom As xdui.FlatButton
+    Friend WithEvents PanelDlRomPrg As Panel
+    Friend WithEvents LblDlRomTotalPrg As Label
+    Friend WithEvents LblDlRomStatusPrg As Label
+    Friend WithEvents LblDlRomStatus As Label
+    Friend WithEvents LblDlRomTotal As Label
+    Friend WithEvents PrgDlRomStatus As xdui.FlatProgressBar
+    Friend WithEvents PrgDlRomTotal As xdui.FlatProgressBar
+    Friend WithEvents LblDlRomStatusBPrg As Label
 End Class

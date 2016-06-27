@@ -38,6 +38,10 @@ page_dlstuff_dl_necessary_stuff=necessary files
 page_dlstuff_total=Total progress
 page_dlstuff_download_failed=Download of {0} failed.
 page_dlstuff_device_not_supported=Unfortunately, your device is not officially supported.[[LF]][[LF]]If you feel that this is a mistake, please report it!
+page_dlrom_part_fw=firmware
+page_dlrom_part_recov=recovery image
+page_dlrom_part_rom=ROM
+page_dlrom_part_misc=miscellaneous files
 #
 #
 #

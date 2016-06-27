@@ -18,7 +18,7 @@ Public Class Main
     Private _
         AdbDetectDeviceThread As Threading.Thread
 
-    Private Shared ReadOnly _
+    Friend Shared ReadOnly _
             STRING_EXIT_CONFIRMATION As String = "confirm_exit",
             STRING_EXIT_CONF_TITLE   As String = "confirm_exit_title",
             STRING_DEVICE_DETECTED   As String = "page_detect_device_detected",
@@ -40,6 +40,10 @@ Public Class Main
 
     Private Sub BtnRetryDlStuff_Click(sender As Object, e As EventArgs) Handles BtnRetryDlStuff.Click
         HandlePage(PageDlStuffPanel.Name)
+    End Sub
+
+    Private Sub BtnRetryDlRom_Click(sender As Object, e As EventArgs) Handles BtnRetryDlRom.Click
+        HandlePage(PageDlRomPanel.Name)
     End Sub
 
     Private Sub AdbDetectDeviceTimer_Tick(sender As Object, e As EventArgs) Handles AdbDetectDeviceTimer.Tick
@@ -124,7 +128,7 @@ Public Class Main
                 Dim dcdd As DownloadManager.DownloadStatusListener.OnDownloadCompletedDelegate = _
                     Sub(Success As Boolean, Ex As Exception, WasCancelled As Boolean)
                         If Not Success Then
-                            PrgDlStuff.BackColor = Color.Red
+                            PrgDlStuff.SetProgressColor(Color.Red)
                             Console.WriteLine("Download failed: " & vbNewLine & Ex.StackTrace)
                             LblDlStuffStatus.Tag = STRING_DLSTF_DL_FAILED
                             LabelUpdater.UpdateLabel(LblDlStuffStatus, New String() { NecStuff(CurrentLine) })
@@ -132,6 +136,7 @@ Public Class Main
                         End If
                         PrgDlStuff.AdvanceProgress(100)
                         PrgDlStuffTotal.AdvanceProgress(100)
+                        ChangePage(True)
                     End Sub
                 ' DownloaddCompleted listener for necessary stuff
                 Dim dcdn As DownloadManager.DownloadStatusListener.OnDownloadCompletedDelegate = _
@@ -141,7 +146,7 @@ Public Class Main
                         PrgDlStuffTotal.AdvanceProgress(CInt(Math.Round(CurrentLine / DoCount)))
                         ' Say that it failed
                         If Not Success Then
-                            PrgDlStuff.BackColor = Color.Red
+                            PrgDlStuff.SetProgressColor(Color.Red)
                             Console.WriteLine("Download failed: " & vbNewLine & Ex.StackTrace)
                             LblDlStuffStatus.Tag = STRING_DLSTF_DL_FAILED
                             LabelUpdater.UpdateLabel(LblDlStuffStatus, New String() { NecStuff(CurrentLine) })
@@ -178,6 +183,21 @@ Public Class Main
                 If CurrentLine < NecStuff.Count Then
                     DM.DownloadFile(Line, "data" & Line.Substring(Line.LastIndexOf("/")), dcdn, did)
                 End If
+            Case PageDlRomPanel.Name
+                DM.DlWebClient.CancelAsync()
+                PrgDlRomStatus.ResetProgressColor()
+                PrgDlRomStatus.SetAutoAdvanceLabel(LblDlRomStatusPrg)
+                PrgDlRomTotal.SetAutoAdvanceLabel(LblDlRomTotalPrg)
+                PanelDlRomPrg.Visible = True
+                PrgDlRomStatus.SetProgress(0)
+                PrgDlRomTotal.SetProgress(0)
+                BtnRetryDlRom.Visible = False
+                LblDlRomStatus.Tag = STRING_DLSTF_DOWNLOADING
+
+                LabelUpdater.UpdateLabel(LblDlStuffStatus, "")
+
+                Dim RD As New RomDownloader(DM, LangManager, PrgDlRomTotal, PrgDlRomStatus)
+                RD.DownloadFull()
         End Select
     End Sub
 
