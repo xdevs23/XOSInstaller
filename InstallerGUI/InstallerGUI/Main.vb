@@ -113,6 +113,13 @@ Public Class Main
                     Sub(Progress As Integer, BytesReceived As Long, BytesToReceive As Long)
                         PrgDlStuff.SetProgress(Progress)
                     End Sub
+                ''' Explanation for this mess:
+                ''' The downloads are done asynchronously, means on another thread.
+                ''' Therefore we need to use these listeners to start the next download after completion
+                ''' of the previous download.
+                ''' 
+                ''' This seems much of a mess, but it actually is pretty simple, just a little bit
+                ''' cluttered.
                 ' DownloadCompleted listener for device specific stuff
                 Dim dcdd As DownloadManager.DownloadStatusListener.OnDownloadCompletedDelegate = _
                     Sub(Success As Boolean, Ex As Exception, WasCancelled As Boolean)
