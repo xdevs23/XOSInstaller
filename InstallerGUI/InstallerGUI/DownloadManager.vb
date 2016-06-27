@@ -10,6 +10,9 @@ Public Class DownloadManager
         ProgressChangeListener As DownloadStatusListener.OnProgressChangedDelegate,
         StringCompletedListener As DownloadStatusListener.OnDownloadStringCompletedDelegate
 
+    Private CurrentBytesToReceive As Long = 0
+    Private CurrentBytesReceived  As Long = 0
+
     Public Sub New()
         Console.WriteLine()
         Console.WriteLine("Initializing a new download manager...")
@@ -19,20 +22,21 @@ Public Class DownloadManager
     End Sub
 
     Private Sub DlWebClient_DownloadFileCompleted(sender As Object, e As AsyncCompletedEventArgs) Handles DlWebClient.DownloadFileCompleted
-        Console.WriteLine()
+        Console.WriteLine("Download completed.")
         If Not IsNothing(CompletedListener) Then CompletedListener.Invoke(IsNothing(e.Error), e.Error, e.Cancelled)
-        CompletedListener = Nothing
+        If Not IsNothing(ProgressChangeListener) Then ProgressChangeListener.Invoke(100, CurrentBytesReceived, CurrentBytesToReceive)
     End Sub
 
     Private Sub DlWebClient_DownloadProgressChanged(sender As Object, e As DownloadProgressChangedEventArgs) Handles DlWebClient.DownloadProgressChanged
+        CurrentBytesReceived  = e.BytesReceived
+        CurrentBytesToReceive = e.TotalBytesToReceive
         If Not IsNothing(ProgressChangeListener) Then ProgressChangeListener.Invoke(e.ProgressPercentage, e.BytesReceived, e.TotalBytesToReceive)
     End Sub
 
     Private Sub DlWebClient_DownloadStringCompleted(sender As Object, e As DownloadStringCompletedEventArgs) Handles DlWebClient.DownloadStringCompleted
+        Console.WriteLine("Download completed.")
         If Not IsNothing(CompletedListener) Then CompletedListener.Invoke(IsNothing(e.Error), e.Error, e.Cancelled)
         If Not IsNothing(StringCompletedListener) Then StringCompletedListener.Invoke(e.Result)
-        CompletedListener = Nothing
-        StringCompletedListener = Nothing
     End Sub
 
     Public Function DownloadFile(Url As String, Filename As String,
@@ -42,9 +46,16 @@ Public Class DownloadManager
         CompletedListener = OnCompletedListener
         OnProgressChangeListener = OnProgressChangeListener
         Try
+            If Not IO.Directory.Exists(FileName.Substring(0, FileName.LastIndexOf("/"))) Then
+                Console.WriteLine("Creating necessary directory """ & Filename.Substring(0, Filename.LastIndexOf("/")) & """")
+                IO.Directory.CreateDirectory(FileName.Substring(0, FileName.LastIndexOf("/")))
+            End If
+
             DlWebClient.DownloadFileAsync(New Uri(Url), FileName)
             Return True
         Catch ex As Exception
+            Console.WriteLine("Exception occured while starting download: " & ex.Message & vbNewLine & _
+                              ex.StackTrace)
             Return False
         End Try
     End Function

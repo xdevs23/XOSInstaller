@@ -125,12 +125,15 @@
     <Compile Include="ConsoleWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DownloadManager.vb" />
     <Compile Include="EmergencyForm.Designer.vb">
       <DependentUpon>EmergencyForm.vb</DependentUpon>
     </Compile>
     <Compile Include="EmergencyForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="InstallerStorage.vb" />
+    <Compile Include="LabelUpdater.vb" />
     <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +176,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\NecessaryDownloadStuff.txt" />
     <Content Include="xosicon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

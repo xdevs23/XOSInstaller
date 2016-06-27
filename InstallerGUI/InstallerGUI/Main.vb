@@ -1,7 +1,7 @@
 ﻿Imports System.Drawing.Text
 Imports System.IO
 Imports xdevs23.Localization
-Imports xdlib.Net
+Imports xdlib.Managing.Configuration.Filesystem
 Imports xdui
 
 Public Class Main
@@ -9,6 +9,9 @@ Public Class Main
     Protected Friend Shared LangManager As LanguageManager
     Private RobotoCondensed, RobotoLight, RobotoThin As PrivateFontCollection
     Private CurrentPage As Integer = 0, CurrentLangIndex As Integer = 0
+    Private DM As DownloadManager
+    
+    Private WasAlreadyInetDetected As Boolean = False
 
     Private WithEvents _
         AdbDetectDeviceTimer As New Timer()
@@ -21,7 +24,10 @@ Public Class Main
             STRING_DEVICE_DETECTED   As String = "page_detect_device_detected",
             STRING_DEVICE_DETECTING  As String = "page_detect_detecting_device",
             STRING_INET_CHECKING     As String = "page_checkinet_checkinet",
-            STRING_NO_INET           As String = "page_checkinet_noinet"
+            STRING_NO_INET           As String = "page_checkinet_noinet",
+            STRING_DLSTF_DOWNLOADING As String = "page_dlstuff_downloading",
+            STRING_DLSTF_DL_FAILED   As String = "page_dlstuff_download_failed",
+            STRING_DLSTF_NO_DEV_SUP  As String = "page_dlstuff_device_not_supported"
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         If MessageBox.Show(LangManager.GetString(STRING_EXIT_CONFIRMATION),
@@ -30,6 +36,10 @@ Public Class Main
             Close()
             End
         End If
+    End Sub
+
+    Private Sub BtnRetryDlStuff_Click(sender As Object, e As EventArgs) Handles BtnRetryDlStuff.Click
+        HandlePage(PageDlStuffPanel.Name)
     End Sub
 
     Private Sub AdbDetectDeviceTimer_Tick(sender As Object, e As EventArgs) Handles AdbDetectDeviceTimer.Tick
@@ -61,6 +71,11 @@ Public Class Main
                     End If
                 End If
             Case PageCheckInetPanel.Name
+                If WasAlreadyInetDetected Then
+                    WasAlreadyInetDetected = False
+                    ChangePage(False)
+                    Return
+                End If
                 LblCheckInet.Tag = STRING_INET_CHECKING
                 LangManager.RefreshLanguage(PageCheckInetPanel)
                 BtnNext.Enabled = False
@@ -71,7 +86,91 @@ Public Class Main
                     BtnRetryInet.Visible = True
                     Return
                 End If
+                WasAlreadyInetDetected = True
                 ChangePage(True)
+            Case PageDlStuffPanel.Name
+                DM.DlWebClient.CancelAsync()
+                PrgDlStuff.SetAutoAdvanceLabel(LblDlStuffStatusPrg)
+                PrgDlStuffTotal.SetAutoAdvanceLabel(LblDlStuffTotalPrg)
+                PanelDownloadStuff.Visible = True
+                PrgDlStuff.SetProgress(0)
+                PrgDlStuffTotal.SetProgress(0)
+                BtnRetryDlStuff.Visible = False
+                LblDlStuffStatus.Tag = STRING_DLSTF_DOWNLOADING
+
+                LabelUpdater.UpdateLabel(LblDlStuffStatus, New String() { "==page_dlstuff_dl_necessary_stuff==" })
+                ' Get the necessary stuff
+                Dim NecStuff As String() = My.Resources.NecessaryDownloadStuff.Split( _
+                                            New String() {vbCrLf, vbLf}, StringSplitOptions.RemoveEmptyEntries)
+                ' To keep track of the current line of the above array
+                Dim CurrentLine As Integer = 0
+                ' Stuff to do
+                Dim DoCount As Integer = NecStuff.Count * 2
+                ' Current line
+                Dim Line As String = NecStuff(CurrentLine)
+                ' ProgressChanged listener
+                Dim did As DownloadManager.DownloadStatusListener.OnProgressChangedDelegate = _ 
+                    Sub(Progress As Integer, BytesReceived As Long, BytesToReceive As Long)
+                        PrgDlStuff.SetProgress(Progress)
+                    End Sub
+                ' DownloadCompleted listener for device specific stuff
+                Dim dcdd As DownloadManager.DownloadStatusListener.OnDownloadCompletedDelegate = _
+                    Sub(Success As Boolean, Ex As Exception, WasCancelled As Boolean)
+                        If Not Success Then
+                            PrgDlStuff.BackColor = Color.Red
+                            Console.WriteLine("Download failed: " & vbNewLine & Ex.StackTrace)
+                            LblDlStuffStatus.Tag = STRING_DLSTF_DL_FAILED
+                            LabelUpdater.UpdateLabel(LblDlStuffStatus, New String() { NecStuff(CurrentLine) })
+                            Return
+                        End If
+                        PrgDlStuff.AdvanceProgress(100)
+                        PrgDlStuffTotal.AdvanceProgress(100)
+                    End Sub
+                ' DownloaddCompleted listener for necessary stuff
+                Dim dcdn As DownloadManager.DownloadStatusListener.OnDownloadCompletedDelegate = _
+                    Sub(Success As Boolean, Ex As Exception, WasCancelled As Boolean)
+                        CurrentLine += 1
+                        ' Update total progress
+                        PrgDlStuffTotal.AdvanceProgress(CInt(Math.Round(CurrentLine / DoCount)))
+                        ' Say that it failed
+                        If Not Success Then
+                            PrgDlStuff.BackColor = Color.Red
+                            Console.WriteLine("Download failed: " & vbNewLine & Ex.StackTrace)
+                            LblDlStuffStatus.Tag = STRING_DLSTF_DL_FAILED
+                            LabelUpdater.UpdateLabel(LblDlStuffStatus, New String() { NecStuff(CurrentLine) })
+                            Return
+                        End If
+                        PrgDlStuff.AdvanceProgress(100)
+                        If CurrentLine < NecStuff.Count Then
+                            Line = NecStuff(CurrentLine)
+                            DM.DownloadFile(Line, "data" & Line.Substring(Line.LastIndexOf("/")), dcdn, did)
+                        End If
+
+                        ' If the last file was downloaded, then download the next one!
+                        If CurrentLine = NecStuff.Count Then
+                            CurrentLine = 0
+                            PrgDlStuffTotal.AdvanceProgress(51)
+                            Dim DevIndex As ConfigFile = Utils.ReadConfigFile("data/DeviceRepos.list")
+                            Console.WriteLine("Device list: " & String.Join(", ", DevIndex.GetAllKeys()))
+                            Console.WriteLine("Device-specific URL for " & _ 
+                                              InstallerStorage.TargetDevice & ": """ & DevIndex.GetValue(InstallerStorage.TargetDevice) & """")
+                            ' Check if device is supported
+                            If IsNothing(DevIndex.GetValue(InstallerStorage.TargetDevice)) _
+                                OrElse DevIndex.GetValue(InstallerStorage.TargetDevice).Equals("") Then
+                                LblDeviceNotSupported.Visible = True
+                                PanelDownloadStuff.Visible = False
+                                BtnRetryDlStuff.Visible = True
+                                Return
+                            End If
+
+                            ' Download device-specific stuff
+                            DM.DownloadFile(DevIndex.GetValue(InstallerStorage.TargetDevice),
+                                            "data/devices/" & InstallerStorage.TargetDevice & ".list", dcdd, did)
+                        End If
+                    End Sub
+                If CurrentLine < NecStuff.Count Then
+                    DM.DownloadFile(Line, "data" & Line.Substring(Line.LastIndexOf("/")), dcdn, did)
+                End If
         End Select
     End Sub
 
@@ -116,12 +215,16 @@ Public Class Main
     End Sub
 
     Private Sub DoAdbDetect()
+        Console.WriteLine()
         Console.WriteLine("Detecting device...")
         AdbHelper.ExecuteAdbCommand("kill-server")
         AdbHelper.ExecuteAdbCommand("start-server")
         AdbHelper.ExecuteAdbCommand("wait-for-device")
         AdbHelper.ExecuteAdbCommand("devices")
-        AdbHelper.ExecuteAdbCommand("shell getprop ro.product.device")
+        InstallerStorage.TargetDevice = AdbHelper.ExecuteAdbCommand("shell getprop ro.product.device") _
+            .Replace(vbCr, "").Replace(vbLf, "").Replace(" ", "")
+        Console.WriteLine("Detected device '" & InstallerStorage.TargetDevice & "'")
+        Console.WriteLine()
     End Sub
 
     Private Sub ChangePage(Forward As Boolean)
@@ -134,6 +237,7 @@ Public Class Main
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Console.WriteLine("Initialization started.")
+        Console.WriteLine()
         Dim sw As New StopWatch
         ' Load fonts
         sw.Start()
@@ -206,16 +310,33 @@ Public Class Main
             End If
         Next
 
+        ' Prepare other stuff
+        LabelUpdater.SetLangManager(LangManager)
+
+        Directory.CreateDirectory("data")
+
+        DM = New DownloadManager()
+
         ' Prepare the first panel
         ChangePage(CurrentPage)
     End Sub
 
     Public Sub Main_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         On Error Resume Next ' Force threads to stop without exception
+        Console.WriteLine()
+        Console.WriteLine("Shutting down application...")
+        ' Abort any running downloads
+        DM.DlWebClient.CancelAsync()
+        DM.DlWebClient.Dispose()
         ' Stop timers
         AdbDetectDeviceTimer.Stop()
         ' Shut down threads
         AdbDetectDeviceThread.Abort()
+        Console.WriteLine("Removing temporary data...")
+        If Directory.Exists("data") Then Directory.Delete("data", True)
+        Console.WriteLine()
+        Console.WriteLine("The installer is now closed." & vbNewLine & 
+                          "The console remains open until you manually close it.")
     End Sub
 
     Private Sub CbxLanguageCh_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles CbxLanguageCh.SelectionChangeCommitted
@@ -224,4 +345,5 @@ Public Class Main
             CurrentLangIndex = CbxLanguageCh.SelectedIndex
         End If
     End Sub
+
 End Class
