@@ -48,13 +48,16 @@ Partial Class Main
         Me.PageDlRomPanel = New System.Windows.Forms.Panel()
         Me.BtnRetryDlRom = New xdui.FlatButton()
         Me.PanelDlRomPrg = New System.Windows.Forms.Panel()
+        Me.LblDlRomStatusBPrg = New System.Windows.Forms.Label()
         Me.LblDlRomTotalPrg = New System.Windows.Forms.Label()
         Me.LblDlRomStatusPrg = New System.Windows.Forms.Label()
         Me.LblDlRomStatus = New System.Windows.Forms.Label()
         Me.LblDlRomTotal = New System.Windows.Forms.Label()
         Me.PrgDlRomStatus = New xdui.FlatProgressBar()
         Me.PrgDlRomTotal = New xdui.FlatProgressBar()
-        Me.LblDlRomStatusBPrg = New System.Windows.Forms.Label()
+        Me.PagePreInstallPanel = New System.Windows.Forms.Panel()
+        Me.LblPreInstallNotice = New System.Windows.Forms.Label()
+        Me.ChkPreInstallAgree = New System.Windows.Forms.CheckBox()
         Me.PageWelcomePanel.SuspendLayout
         Me.PageDetectDevicePanel.SuspendLayout
         Me.PageCheckInetPanel.SuspendLayout
@@ -62,6 +65,7 @@ Partial Class Main
         Me.PanelDownloadStuff.SuspendLayout
         Me.PageDlRomPanel.SuspendLayout
         Me.PanelDlRomPrg.SuspendLayout
+        Me.PagePreInstallPanel.SuspendLayout
         Me.SuspendLayout
         '
         'PageWelcomePanel
@@ -367,7 +371,7 @@ Partial Class Main
         Me.PageDlRomPanel.Controls.Add(Me.PanelDlRomPrg)
         Me.PageDlRomPanel.Location = New System.Drawing.Point(2, 153)
         Me.PageDlRomPanel.Name = "PageDlRomPanel"
-        Me.PageDlRomPanel.Size = New System.Drawing.Size(790, 407)
+        Me.PageDlRomPanel.Size = New System.Drawing.Size(79, 48)
         Me.PageDlRomPanel.TabIndex = 13
         Me.PageDlRomPanel.Tag = "4"
         Me.PageDlRomPanel.Visible = false
@@ -382,7 +386,7 @@ Partial Class Main
         Me.BtnRetryDlRom.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnRetryDlRom.Font = New System.Drawing.Font("Segoe UI", 10.25!)
         Me.BtnRetryDlRom.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
-        Me.BtnRetryDlRom.Location = New System.Drawing.Point(3, 381)
+        Me.BtnRetryDlRom.Location = New System.Drawing.Point(3, 22)
         Me.BtnRetryDlRom.Name = "BtnRetryDlRom"
         Me.BtnRetryDlRom.Size = New System.Drawing.Size(75, 23)
         Me.BtnRetryDlRom.TabIndex = 5
@@ -405,14 +409,23 @@ Partial Class Main
         Me.PanelDlRomPrg.Controls.Add(Me.PrgDlRomTotal)
         Me.PanelDlRomPrg.Location = New System.Drawing.Point(3, 75)
         Me.PanelDlRomPrg.Name = "PanelDlRomPrg"
-        Me.PanelDlRomPrg.Size = New System.Drawing.Size(784, 100)
+        Me.PanelDlRomPrg.Size = New System.Drawing.Size(73, 100)
         Me.PanelDlRomPrg.TabIndex = 4
+        '
+        'LblDlRomStatusBPrg
+        '
+        Me.LblDlRomStatusBPrg.AutoSize = true
+        Me.LblDlRomStatusBPrg.Location = New System.Drawing.Point(576, 1)
+        Me.LblDlRomStatusBPrg.Name = "LblDlRomStatusBPrg"
+        Me.LblDlRomStatusBPrg.Size = New System.Drawing.Size(51, 13)
+        Me.LblDlRomStatusBPrg.TabIndex = 6
+        Me.LblDlRomStatusBPrg.Text = "0 / 0 MiB"
         '
         'LblDlRomTotalPrg
         '
         Me.LblDlRomTotalPrg.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.LblDlRomTotalPrg.AutoSize = true
-        Me.LblDlRomTotalPrg.Location = New System.Drawing.Point(745, 45)
+        Me.LblDlRomTotalPrg.Location = New System.Drawing.Point(34, 45)
         Me.LblDlRomTotalPrg.Name = "LblDlRomTotalPrg"
         Me.LblDlRomTotalPrg.Size = New System.Drawing.Size(36, 13)
         Me.LblDlRomTotalPrg.TabIndex = 5
@@ -423,7 +436,7 @@ Partial Class Main
         '
         Me.LblDlRomStatusPrg.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.LblDlRomStatusPrg.AutoSize = true
-        Me.LblDlRomStatusPrg.Location = New System.Drawing.Point(745, 1)
+        Me.LblDlRomStatusPrg.Location = New System.Drawing.Point(34, 1)
         Me.LblDlRomStatusPrg.Name = "LblDlRomStatusPrg"
         Me.LblDlRomStatusPrg.Size = New System.Drawing.Size(36, 13)
         Me.LblDlRomStatusPrg.TabIndex = 4
@@ -457,7 +470,7 @@ Partial Class Main
         Me.PrgDlRomStatus.BackColor = System.Drawing.Color.Transparent
         Me.PrgDlRomStatus.Location = New System.Drawing.Point(6, 17)
         Me.PrgDlRomStatus.Name = "PrgDlRomStatus"
-        Me.PrgDlRomStatus.Size = New System.Drawing.Size(775, 14)
+        Me.PrgDlRomStatus.Size = New System.Drawing.Size(64, 14)
         Me.PrgDlRomStatus.TabIndex = 1
         '
         'PrgDlRomTotal
@@ -467,17 +480,41 @@ Partial Class Main
         Me.PrgDlRomTotal.BackColor = System.Drawing.Color.Transparent
         Me.PrgDlRomTotal.Location = New System.Drawing.Point(6, 61)
         Me.PrgDlRomTotal.Name = "PrgDlRomTotal"
-        Me.PrgDlRomTotal.Size = New System.Drawing.Size(775, 14)
+        Me.PrgDlRomTotal.Size = New System.Drawing.Size(64, 14)
         Me.PrgDlRomTotal.TabIndex = 2
         '
-        'LblDlRomStatusBPrg
+        'PagePreInstallPanel
         '
-        Me.LblDlRomStatusBPrg.AutoSize = true
-        Me.LblDlRomStatusBPrg.Location = New System.Drawing.Point(576, 1)
-        Me.LblDlRomStatusBPrg.Name = "LblDlRomStatusBPrg"
-        Me.LblDlRomStatusBPrg.Size = New System.Drawing.Size(51, 13)
-        Me.LblDlRomStatusBPrg.TabIndex = 6
-        Me.LblDlRomStatusBPrg.Text = "0 / 0 MiB"
+        Me.PagePreInstallPanel.Controls.Add(Me.ChkPreInstallAgree)
+        Me.PagePreInstallPanel.Controls.Add(Me.LblPreInstallNotice)
+        Me.PagePreInstallPanel.Location = New System.Drawing.Point(87, 153)
+        Me.PagePreInstallPanel.Name = "PagePreInstallPanel"
+        Me.PagePreInstallPanel.Size = New System.Drawing.Size(109, 48)
+        Me.PagePreInstallPanel.TabIndex = 14
+        Me.PagePreInstallPanel.Tag = "5"
+        '
+        'LblPreInstallNotice
+        '
+        Me.LblPreInstallNotice.AutoSize = true
+        Me.LblPreInstallNotice.Location = New System.Drawing.Point(3, 4)
+        Me.LblPreInstallNotice.Name = "LblPreInstallNotice"
+        Me.LblPreInstallNotice.Size = New System.Drawing.Size(84, 13)
+        Me.LblPreInstallNotice.TabIndex = 0
+        Me.LblPreInstallNotice.Tag = "page_preinstall_notice"
+        Me.LblPreInstallNotice.Text = "Pre-install notice"
+        '
+        'ChkPreInstallAgree
+        '
+        Me.ChkPreInstallAgree.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left),System.Windows.Forms.AnchorStyles)
+        Me.ChkPreInstallAgree.AutoSize = true
+        Me.ChkPreInstallAgree.Location = New System.Drawing.Point(3, 25)
+        Me.ChkPreInstallAgree.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.ChkPreInstallAgree.Name = "ChkPreInstallAgree"
+        Me.ChkPreInstallAgree.Size = New System.Drawing.Size(59, 17)
+        Me.ChkPreInstallAgree.TabIndex = 1
+        Me.ChkPreInstallAgree.Tag = "page_preinstall_agree_chk"
+        Me.ChkPreInstallAgree.Text = "I agree"
+        Me.ChkPreInstallAgree.UseVisualStyleBackColor = true
         '
         'Main
         '
@@ -485,6 +522,7 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(804, 601)
+        Me.Controls.Add(Me.PagePreInstallPanel)
         Me.Controls.Add(Me.PageDlRomPanel)
         Me.Controls.Add(Me.PageDlStuffPanel)
         Me.Controls.Add(Me.PageCheckInetPanel)
@@ -515,6 +553,8 @@ Partial Class Main
         Me.PageDlRomPanel.ResumeLayout(false)
         Me.PanelDlRomPrg.ResumeLayout(false)
         Me.PanelDlRomPrg.PerformLayout
+        Me.PagePreInstallPanel.ResumeLayout(false)
+        Me.PagePreInstallPanel.PerformLayout
         Me.ResumeLayout(false)
 
 End Sub
@@ -551,4 +591,7 @@ End Sub
     Friend WithEvents PrgDlRomStatus As xdui.FlatProgressBar
     Friend WithEvents PrgDlRomTotal As xdui.FlatProgressBar
     Friend WithEvents LblDlRomStatusBPrg As Label
+    Friend WithEvents PagePreInstallPanel As Panel
+    Friend WithEvents LblPreInstallNotice As Label
+    Friend WithEvents ChkPreInstallAgree As CheckBox
 End Class

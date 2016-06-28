@@ -42,7 +42,8 @@ page_dlrom_part_fw=firmware
 page_dlrom_part_recov=recovery image
 page_dlrom_part_rom=ROM
 page_dlrom_part_misc=miscellaneous files
-#
+page_preinstall_notice=Very important notice:[[LF]][[LF]]We will need to delete your whole internal data, including apps, app data, accounts, settings and more. Your media, including photos, videos, music, documents, downloads, etc., probably won't be affected by that.[[LF]][[LF]]Also note that to install halogenOS you shall have your bootloader unlocked. For that, please read a guide written about unlocking your device's bootloader.[[LF]]Additionally, we need you to have TWRP (TeamWin Recovery Project), a custom recovery, installed on your device.[[LF]][[LF]]No changes have been made to your device, yet. If you agree the notice above, you can proceed. By clicking on the "Next" button, you fully agree the information written above and want to proceed with the installation process.[[LF]][[LF]]For better safety of your data, please make a full backup before proceeding and store it on an external storage!
+page_preinstall_agree_chk=I have fully read the information above and I want to proceed now
 #
 #
 [Console window]

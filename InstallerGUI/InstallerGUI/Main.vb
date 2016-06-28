@@ -46,6 +46,10 @@ Public Class Main
         HandlePage(PageDlRomPanel.Name)
     End Sub
 
+    Private Sub ChkPreInstallAgree_CheckedChanged(sender As Object, e As EventArgs) Handles ChkPreInstallAgree.CheckedChanged
+        BtnNext.Enabled = ChkPreInstallAgree.Checked
+    End Sub
+
     Private Sub AdbDetectDeviceTimer_Tick(sender As Object, e As EventArgs) Handles AdbDetectDeviceTimer.Tick
         HandlePage(PageDetectDevicePanel.Name, STRING_DEVICE_DETECTED)
     End Sub
@@ -198,6 +202,8 @@ Public Class Main
 
                 Dim RD As New RomDownloader(DM, LangManager, PrgDlRomTotal, PrgDlRomStatus)
                 RD.DownloadFull()
+            Case PagePreInstallPanel.Name
+                BtnNext.Enabled = False
         End Select
     End Sub
 
@@ -205,7 +211,7 @@ Public Class Main
         HandlePage(PageCheckInetPanel.Name)
     End Sub
 
-    Private Sub ChangePage(PageNum As Integer)
+    Protected Friend Sub ChangePage(PageNum As Integer)
         Dim PageCount As Integer = 0, FoundPage As Integer = 0
         Dim FoundPageName As String = ""
         For i As Integer = 0 To Controls.Count - 1 Step 1
@@ -254,7 +260,7 @@ Public Class Main
         Console.WriteLine()
     End Sub
 
-    Private Sub ChangePage(Forward As Boolean)
+    Protected Friend Sub ChangePage(Forward As Boolean)
         ChangePage(CType(IIf(Forward, CurrentPage + 1, CurrentPage - 1), Integer))
     End Sub
 

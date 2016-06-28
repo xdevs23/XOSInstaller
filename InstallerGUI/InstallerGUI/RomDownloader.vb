@@ -148,6 +148,7 @@ Public Class RomDownloader
         UpdateSubProgress(0, 3)
         Main.LblDlRomStatusBPrg.Text = BeginBDlText
         UpdateSubProgress(100)
+        Main.ChangePage(True)
     End Sub
 
     Public Sub DownloadFull()
