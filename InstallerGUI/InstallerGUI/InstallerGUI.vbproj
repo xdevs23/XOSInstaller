@@ -243,6 +243,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="privatekey.pfx" />
+    <Content Include="XOS Installer for Linux.sh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\xD\xdlib\xdlib.vbproj">
