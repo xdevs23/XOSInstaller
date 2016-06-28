@@ -1,4 +1,4 @@
-﻿# Language file for the halogenOS Installer
+# Language file for the halogenOS Installer
 # Please don't leave lines blank, make sure the syntax is correct and use comments on their lines:
 #
 # # This is a comment and can be used like this
@@ -23,13 +23,13 @@ general_next=Next
 general_cancel=Cancel
 general_back=Back
 general_retry=Retry
-confirm_exit=Are you sure that you want to exit the application?
+confirm_exit=Are you sure you want to close the application?
 confirm_exit_title=Cancel progress
 [Main form]
 mainform_showconsole=Show console
 [Pages]
-page_welcome_welcometext=Welcome to the halogenOS installer![[LF]]This program is going to guide you through the installation progress of halogenOS and do everything necessary to install it on your phone![[LF]][[LF]]We believe that you'll love it!
-page_detect_detecting_device=Detecting device...[[LF]][[LF]]We are trying to detect your Android device.[[LF]]Please make sure to enable 'USB debugging' in Settings -> Developer options -> USB debugging for the detection progress to finish successfully.[[LF]][[LF]][[LF]][[LF]]Connect your device to continue.
+page_welcome_welcometext=Welcome to the halogenOS installer![[LF]]This program is going to guide you through the installation process of halogenOS and do everything necessary to install it on your phone![[LF]][[LF]]We believe that you'll love it!
+page_detect_detecting_device=Detecting device...[[LF]][[LF]]We are trying to detect your Android device.[[LF]]Please make sure to enable 'USB debugging' in Settings -> Developer options -> USB debugging for the detection process to finish successfully.[[LF]][[LF]][[LF]][[LF]]Connect your device to continue.
 page_detect_device_detected=Your device was successfully detected.[[LF]][[LF]]You can now click on 'Next' to continue.
 page_checkinet_checkinet=Checking internet connection...
 page_checkinet_noinet=No internet connection available.[[LF]][[LF]]Please make sure that you are connected to the internet and try again.
@@ -42,7 +42,7 @@ page_dlrom_part_fw=firmware
 page_dlrom_part_recov=recovery image
 page_dlrom_part_rom=ROM
 page_dlrom_part_misc=miscellaneous files
-page_preinstall_notice=Very important notice:[[LF]][[LF]]We will need to delete your whole internal data, including apps, app data, accounts, settings and more. Your media, including photos, videos, music, documents, downloads, etc., probably won't be affected by that.[[LF]][[LF]]Also note that to install halogenOS you shall have your bootloader unlocked. For that, please read a guide written about unlocking your device's bootloader.[[LF]]Additionally, we need you to have TWRP (TeamWin Recovery Project), a custom recovery, installed on your device.[[LF]][[LF]]No changes have been made to your device, yet. If you agree the notice above, you can proceed. By clicking on the "Next" button, you fully agree the information written above and want to proceed with the installation process.[[LF]][[LF]]For better safety of your data, please make a full backup before proceeding and store it on an external storage!
+page_preinstall_notice=Very important notice:[[LF]][[LF]]We will need to delete your whole internal data, including apps, app data, accounts, settings and more. Your media, including photos, videos, music, documents, downloads, etc., probably won't be affected by that.[[LF]][[LF]]Also note that to install halogenOS you should already have your bootloader unlocked. For that, please read a written guide about unlocking your device's bootloader.[[LF]]Additionally, we need you to already have TWRP (TeamWin Recovery Project), a custom recovery, installed on your device.[[LF]][[LF]]No changes have been made to your device, yet. If you agree the notice above, you can proceed. By clicking on the "Next" button, you fully agree the information written above and want to proceed with the installation process.[[LF]][[LF]]For better safety of your data, please make a full backup before proceeding, and store it on an external storage device!
 page_preinstall_agree_chk=I have fully read the information above and I want to proceed now
 #
 #
