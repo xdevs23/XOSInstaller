@@ -325,8 +325,8 @@ Public Class Main
                 For Each Cx As Control In C.Controls
                     If TypeOf (Cx) Is Label Then
                         Cx.MaximumSize = New Size(C.Width, C.Height)
-                    ElseIf TypeOf(Cx) _
-                        Is ComboBox _
+                    ElseIf TypeOf(Cx) Is ComboBox _
+                        Or TypeOf(Cx) Is FlatButton _
                         Then
                         Cx.Font = Font
                     End If
