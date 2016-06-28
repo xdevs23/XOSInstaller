@@ -23,7 +23,8 @@ Namespace Localization
             For Each C As Control In Cl.Controls
                 If _
                     TypeOf (C) Is Button Or _
-                    TypeOf (C) Is Label  Then
+                    TypeOf (C) Is Label  Or _
+                    TypeOf (C) Is CheckBox Then
                     If IsNothing(C.Tag) OrElse C.Tag.Equals("") Then Continue For
                     Dim t As String = Loader.GetDefaultLanguage().GetValue(C.Tag.ToString())
                     If t.Equals("") Then t = Loader.GetLanguage("en").GetValue(C.Tag.ToString())
