@@ -7,7 +7,7 @@ Public Class ConsoleWindow
     End Sub
 
     Private Shared Sub HideCaret(ByRef TB As TextBox)
-        If Not My.Computer.Info.OSFullName.Contains("UNIX") Then _
+        If Not My.Computer.Info.OSPlatform.Contains("unix") Then _
             HideCaret(TB.Handle)
     End Sub
 
