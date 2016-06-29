@@ -1,4 +1,4 @@
-# Language file for the halogenOS Installer
+﻿# Language file for the halogenOS Installer
 # Please don't leave lines blank, make sure the syntax is correct and use comments on their lines:
 #
 # # This is a comment and can be used like this
@@ -44,6 +44,8 @@ page_dlrom_part_rom=ROM
 page_dlrom_part_misc=miscellaneous files
 page_preinstall_notice=Very important notice:[[LF]][[LF]]We will need to delete your whole internal data, including apps, app data, accounts, settings and more. Your media, including photos, videos, music, documents, downloads, etc., probably won't be affected by that.[[LF]][[LF]]Also note that to install halogenOS you should already have your bootloader unlocked. For that, please read a guide about unlocking your device's bootloader. Note that not all devices need an unlocked bootloader for custom ROMs.[[LF]]Additionally, we need you to already have TWRP (TeamWin Recovery Project), a custom recovery, installed on your device.[[LF]][[LF]]No changes have been made to your device, yet. If you agree the notice above, you can proceed. By clicking on the "Next" button, you fully agree the information written above and want to proceed with the installation process.[[LF]][[LF]]For better safety of your data, please make a full backup before proceeding, and store it on an external storage device!
 page_preinstall_agree_chk=I have fully read the information above and I want to proceed now
+page_install_installing=Installing halogenOS...
+page_install_notice=halogenOS is being installed. Please note that this process will take some time.[[LF]][[LF]]Do not abort the process unless you are sure what you are doing! The phone will reboot several times during the installation.[[LF]]Please keep the cable plugged in and do not turn off the phone or your computer.
 #
 #
 [Console window]

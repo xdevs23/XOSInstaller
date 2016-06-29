@@ -147,7 +147,27 @@ Public Class RomDownloader
         Console.WriteLine("Downloading other stuff...")
         UpdateSubProgress(0, 3)
         Main.LblDlRomStatusBPrg.Text = BeginBDlText
+        Console.WriteLine("  => Install script")
+        Dim installscript As String = DeviceRepo.GetValue("installscript")
+        DM.SetDownloadFile(installscript, DeviceDir & "/install.bat")
+        DM.SetListeners( _
+            Sub(Success As Boolean, Ex As Exception, WasCancelled As Boolean) ' OnDownloadCompleted
+                If Success Then
+                    Main.LblDlRomStatusBPrg.Text = BeginBDlText
+                Else
+                    ProgressFailed("page_dlrom_part_misc", Ex)
+                End If
+            End Sub,
+            Sub(Progress As Integer, BytesReceived As Long, BytesToReceive As Long) ' OnProgressChange
+                UpdateSubProgress(Progress)
+                Main.LblDlRomStatusBPrg.Text = Math.Round(BytesReceived / 1024 / 1024, 1).ToString() & _
+                                                " / " & Math.Round(BytesToReceive / 1024 / 1024, 1).ToString & _
+                                                " MiB"
+            End Sub _
+        )
+        DM.StartDownload()
         UpdateSubProgress(100)
+        Console.WriteLine()
         Main.ChangePage(True)
     End Sub
 

@@ -11,12 +11,22 @@ Public Class Main
     Private CurrentPage As Integer = 0, CurrentLangIndex As Integer = 0
     Private DM As DownloadManager
     
-    Private WasAlreadyInetDetected As Boolean = False
+    Private WasAlreadyInetDetected   As Boolean = False,
+            IsToStartInstallation    As Boolean = False,
+            DeviceDetectedForInstall As Boolean = False,
+            ShouldClose              As Boolean = False
 
     Private WithEvents _
-        AdbDetectDeviceTimer As New Timer()
+        AdbDetectDeviceTimer As New Timer(),
+        InstallTimer         As New Timer()
     Private _
-        AdbDetectDeviceThread As Threading.Thread
+        AdbDetectDeviceThread, InstallThread As Threading.Thread
+
+    ' 0 = Installation didn't start
+    ' 1 = Installation started
+    ' 2 = Installation succeeded
+    ' 3 = Installation failed
+    Private InstallState As Integer = 0
 
     Friend Shared ReadOnly _
             STRING_EXIT_CONFIRMATION As String = "confirm_exit",
@@ -33,9 +43,11 @@ Public Class Main
         If MessageBox.Show(LangManager.GetString(STRING_EXIT_CONFIRMATION),
                            LangManager.GetString(STRING_EXIT_CONF_TITLE),
                            MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            ShouldClose = True
             Close()
             End
         End If
+        ShouldClose = False
     End Sub
 
     Private Sub BtnRetryDlStuff_Click(sender As Object, e As EventArgs) Handles BtnRetryDlStuff.Click
@@ -76,6 +88,10 @@ Public Class Main
                         BtnNext.Enabled = True
                         BtnBack.Enabled = True
                         AdbDetectDeviceTimer.Stop()
+                        If IsToStartInstallation Then
+                            DeviceDetectedForInstall = True
+                            ChangePage(CInt(PageInstallPanel.Tag))
+                        End If
                     End If
                 End If
             Case PageCheckInetPanel.Name
@@ -98,6 +114,8 @@ Public Class Main
                 ChangePage(True)
             Case PageDlStuffPanel.Name
                 DM.DlWebClient.CancelAsync()
+                BtnNext.Enabled = False
+                BtnNext.Visible = True
                 PrgDlStuff.SetAutoAdvanceLabel(LblDlStuffStatusPrg)
                 PrgDlStuffTotal.SetAutoAdvanceLabel(LblDlStuffTotalPrg)
                 PanelDownloadStuff.Visible = True
@@ -142,12 +160,9 @@ Public Class Main
                         PrgDlStuffTotal.AdvanceProgress(100)
                         ChangePage(True)
                     End Sub
-                ' DownloaddCompleted listener for necessary stuff
+                ' DownloadCompleted listener for necessary stuff
                 Dim dcdn As DownloadManager.DownloadStatusListener.OnDownloadCompletedDelegate = _
                     Sub(Success As Boolean, Ex As Exception, WasCancelled As Boolean)
-                        CurrentLine += 1
-                        ' Update total progress
-                        PrgDlStuffTotal.AdvanceProgress(CInt(Math.Round(CurrentLine / DoCount)))
                         ' Say that it failed
                         If Not Success Then
                             PrgDlStuff.SetProgressColor(Color.Red)
@@ -156,6 +171,9 @@ Public Class Main
                             LabelUpdater.UpdateLabel(LblDlStuffStatus, New String() { NecStuff(CurrentLine) })
                             Return
                         End If
+                        CurrentLine += 1
+                        ' Update total progress
+                        PrgDlStuffTotal.AdvanceProgress(CInt(Math.Round(CurrentLine / DoCount)))
                         PrgDlStuff.AdvanceProgress(100)
                         If CurrentLine < NecStuff.Count Then
                             Line = NecStuff(CurrentLine)
@@ -189,6 +207,8 @@ Public Class Main
                 End If
             Case PageDlRomPanel.Name
                 DM.DlWebClient.CancelAsync()
+                BtnNext.Enabled = False
+                BtnNext.Visible = True
                 PrgDlRomStatus.ResetProgressColor()
                 PrgDlRomStatus.SetAutoAdvanceLabel(LblDlRomStatusPrg)
                 PrgDlRomTotal.SetAutoAdvanceLabel(LblDlRomTotalPrg)
@@ -204,6 +224,23 @@ Public Class Main
                 RD.DownloadFull()
             Case PagePreInstallPanel.Name
                 BtnNext.Enabled = False
+                BtnNext.Visible = True
+            Case PageInstallPanel.Name
+                BtnBack.Enabled = False
+                BtnNext.Enabled = False
+                BtnNext.Visible = True
+                If Not DeviceDetectedForInstall Then
+                    IsToStartInstallation = True
+                    ChangePage(CInt(PageDetectDevicePanel.Tag))
+                    Return
+                End If
+                PrgIInstallXOS.SetIntermediate(True)
+                InstallTimer.Interval = 2000
+                InstallTimer.Start()
+                InstallThread = New Threading.Thread( _
+                    New Threading.ThreadStart(AddressOf DoInstall) _
+                )
+                InstallThread.Start()
         End Select
     End Sub
 
@@ -260,11 +297,48 @@ Public Class Main
         Console.WriteLine()
     End Sub
 
+    Private Sub DoInstall()
+        Console.WriteLine()
+        Console.WriteLine("Installation is starting...")
+        Dim p As New ProcessStartInfo
+
+        p.FileName  = "cmd.exe"
+        p.Arguments = "/C data/devices/" & InstallerStorage.TargetDevice & "/install.bat"
+        Environment.SetEnvironmentVariable("PATH", 
+                                           Environment.GetEnvironmentVariable("PATH") _
+                                           & ":prebuilts" & _
+                                           IIf(My.Computer.Info.OSPlatform.ToLower().Contains("unix"), "/linux/adb", "\adb").ToString() _
+                                           )
+
+        ' Don't show a window!
+        p.WindowStyle = ProcessWindowStyle.Hidden
+        p.CreateNoWindow = True
+
+        ' Prepare to catch up the output
+        p.RedirectStandardOutput = True
+        p.UseShellExecute = False
+
+        ' Start the process
+        Dim proc As New Process()
+        proc.StartInfo = p
+        proc.EnableRaisingEvents = True
+        Application.DoEvents()
+        AddHandler proc.ErrorDataReceived,  AddressOf Console.WriteLine
+        AddHandler proc.OutputDataReceived, AddressOf Console.WriteLine
+        proc.Start()
+        InstallState = 1
+        Console.WriteLine("Installation started.")
+        proc.WaitForExit()
+        Dim result As String = proc.StandardOutput.ReadToEnd()
+        InstallState = CInt(IIf(result.Contains("!!!"), 3, 2))
+    End Sub
+
     Protected Friend Sub ChangePage(Forward As Boolean)
         ChangePage(CType(IIf(Forward, CurrentPage + 1, CurrentPage - 1), Integer))
     End Sub
 
     Private Sub NextBackButton_Click(sender As Object, e As EventArgs) Handles BtnNext.Click, BtnBack.Click
+        If CType(sender, FlatButton).Equals(BtnBack) Then DM.DlWebClient.CancelAsync()
         ChangePage(CType(sender, FlatButton).Equals(BtnNext))
     End Sub
 
@@ -377,6 +451,29 @@ Public Class Main
             LangManager.ApplyLanguage(Me, CType(CbxLanguageCh.SelectedItem, Language).LangName)
             CurrentLangIndex = CbxLanguageCh.SelectedIndex
         End If
+    End Sub
+
+    Private Sub Main_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If (Not e.CloseReason = CloseReason.WindowsShutDown) And (Not e.CloseReason = CloseReason.ApplicationExitCall) _
+            AndAlso (Not ShouldClose) Then
+            e.Cancel = True
+            BtnCancel_Click(Nothing, Nothing)
+        End If
+    End Sub
+
+    Private Sub InstallTimer_Tick(sender As Object, e As EventArgs) Handles InstallTimer.Tick
+        Select Case InstallState
+            ' Installation didn't start yet, don't do anything.
+            Case 0: Return
+            ' Installation started, don't do anything as well.
+            Case 1: Return
+            ' Installation succeeded, switch to finish page with good message
+            Case 2:
+            ' Installation failed, switch to finish page with bad message
+            Case 3:
+            ' !? Ignore.
+            Case Else: Return
+        End Select
     End Sub
 
 End Class

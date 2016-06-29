@@ -41,10 +41,6 @@ Partial Class Main
         Me.LblDlStuffTotal = New System.Windows.Forms.Label()
         Me.PrgDlStuff = New xdui.FlatProgressBar()
         Me.PrgDlStuffTotal = New xdui.FlatProgressBar()
-        Me.BtnShowConsole = New xdui.FlatButton()
-        Me.BtnCancel = New xdui.FlatButton()
-        Me.BtnBack = New xdui.FlatButton()
-        Me.BtnNext = New xdui.FlatButton()
         Me.PageDlRomPanel = New System.Windows.Forms.Panel()
         Me.BtnRetryDlRom = New xdui.FlatButton()
         Me.PanelDlRomPrg = New System.Windows.Forms.Panel()
@@ -56,8 +52,16 @@ Partial Class Main
         Me.PrgDlRomStatus = New xdui.FlatProgressBar()
         Me.PrgDlRomTotal = New xdui.FlatProgressBar()
         Me.PagePreInstallPanel = New System.Windows.Forms.Panel()
-        Me.LblPreInstallNotice = New System.Windows.Forms.Label()
         Me.ChkPreInstallAgree = New System.Windows.Forms.CheckBox()
+        Me.LblPreInstallNotice = New System.Windows.Forms.Label()
+        Me.PageInstallPanel = New System.Windows.Forms.Panel()
+        Me.PrgIInstallXOS = New xdui.FlatProgressBar()
+        Me.LblInstallInstallingXOS = New System.Windows.Forms.Label()
+        Me.LblInstallNotice = New System.Windows.Forms.Label()
+        Me.BtnShowConsole = New xdui.FlatButton()
+        Me.BtnCancel = New xdui.FlatButton()
+        Me.BtnBack = New xdui.FlatButton()
+        Me.BtnNext = New xdui.FlatButton()
         Me.PageWelcomePanel.SuspendLayout
         Me.PageDetectDevicePanel.SuspendLayout
         Me.PageCheckInetPanel.SuspendLayout
@@ -66,6 +70,7 @@ Partial Class Main
         Me.PageDlRomPanel.SuspendLayout
         Me.PanelDlRomPrg.SuspendLayout
         Me.PagePreInstallPanel.SuspendLayout
+        Me.PageInstallPanel.SuspendLayout
         Me.SuspendLayout
         '
         'PageWelcomePanel
@@ -278,6 +283,7 @@ Partial Class Main
         Me.PrgDlStuff.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
             Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.PrgDlStuff.BackColor = System.Drawing.Color.Transparent
+        Me.PrgDlStuff.IsIntermediate = false
         Me.PrgDlStuff.Location = New System.Drawing.Point(6, 17)
         Me.PrgDlStuff.Name = "PrgDlStuff"
         Me.PrgDlStuff.Size = New System.Drawing.Size(71, 14)
@@ -288,82 +294,11 @@ Partial Class Main
         Me.PrgDlStuffTotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
             Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.PrgDlStuffTotal.BackColor = System.Drawing.Color.Transparent
+        Me.PrgDlStuffTotal.IsIntermediate = false
         Me.PrgDlStuffTotal.Location = New System.Drawing.Point(6, 61)
         Me.PrgDlStuffTotal.Name = "PrgDlStuffTotal"
         Me.PrgDlStuffTotal.Size = New System.Drawing.Size(71, 14)
         Me.PrgDlStuffTotal.TabIndex = 2
-        '
-        'BtnShowConsole
-        '
-        Me.BtnShowConsole.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnShowConsole.FlatAppearance.BorderSize = 0
-        Me.BtnShowConsole.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnShowConsole.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnShowConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnShowConsole.Font = New System.Drawing.Font("Segoe UI", 10.25!)
-        Me.BtnShowConsole.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
-        Me.BtnShowConsole.Location = New System.Drawing.Point(693, 12)
-        Me.BtnShowConsole.Name = "BtnShowConsole"
-        Me.BtnShowConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnShowConsole.Size = New System.Drawing.Size(99, 23)
-        Me.BtnShowConsole.TabIndex = 9
-        Me.BtnShowConsole.Tag = "mainform_showconsole"
-        Me.BtnShowConsole.Text = "Console"
-        Me.BtnShowConsole.UseVisualStyleBackColor = false
-        '
-        'BtnCancel
-        '
-        Me.BtnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
-        Me.BtnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnCancel.FlatAppearance.BorderSize = 0
-        Me.BtnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnCancel.Font = New System.Drawing.Font("Segoe UI", 10.25!)
-        Me.BtnCancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
-        Me.BtnCancel.Location = New System.Drawing.Point(555, 566)
-        Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 23)
-        Me.BtnCancel.TabIndex = 7
-        Me.BtnCancel.Tag = "general_cancel"
-        Me.BtnCancel.Text = "Cancel"
-        Me.BtnCancel.UseVisualStyleBackColor = false
-        '
-        'BtnBack
-        '
-        Me.BtnBack.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
-        Me.BtnBack.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnBack.FlatAppearance.BorderSize = 0
-        Me.BtnBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnBack.Font = New System.Drawing.Font("Segoe UI", 10.25!)
-        Me.BtnBack.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
-        Me.BtnBack.Location = New System.Drawing.Point(636, 566)
-        Me.BtnBack.Name = "BtnBack"
-        Me.BtnBack.Size = New System.Drawing.Size(75, 23)
-        Me.BtnBack.TabIndex = 6
-        Me.BtnBack.Tag = "general_back"
-        Me.BtnBack.Text = "Back"
-        Me.BtnBack.UseVisualStyleBackColor = false
-        '
-        'BtnNext
-        '
-        Me.BtnNext.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
-        Me.BtnNext.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnNext.FlatAppearance.BorderSize = 0
-        Me.BtnNext.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
-        Me.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnNext.Font = New System.Drawing.Font("Segoe UI", 10.25!)
-        Me.BtnNext.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
-        Me.BtnNext.Location = New System.Drawing.Point(717, 566)
-        Me.BtnNext.Name = "BtnNext"
-        Me.BtnNext.Size = New System.Drawing.Size(75, 23)
-        Me.BtnNext.TabIndex = 5
-        Me.BtnNext.Tag = "general_next"
-        Me.BtnNext.Text = "Next"
-        Me.BtnNext.UseVisualStyleBackColor = false
         '
         'PageDlRomPanel
         '
@@ -468,6 +403,7 @@ Partial Class Main
         Me.PrgDlRomStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
             Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.PrgDlRomStatus.BackColor = System.Drawing.Color.Transparent
+        Me.PrgDlRomStatus.IsIntermediate = false
         Me.PrgDlRomStatus.Location = New System.Drawing.Point(6, 17)
         Me.PrgDlRomStatus.Name = "PrgDlRomStatus"
         Me.PrgDlRomStatus.Size = New System.Drawing.Size(64, 14)
@@ -478,6 +414,7 @@ Partial Class Main
         Me.PrgDlRomTotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
             Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.PrgDlRomTotal.BackColor = System.Drawing.Color.Transparent
+        Me.PrgDlRomTotal.IsIntermediate = false
         Me.PrgDlRomTotal.Location = New System.Drawing.Point(6, 61)
         Me.PrgDlRomTotal.Name = "PrgDlRomTotal"
         Me.PrgDlRomTotal.Size = New System.Drawing.Size(64, 14)
@@ -492,16 +429,7 @@ Partial Class Main
         Me.PagePreInstallPanel.Size = New System.Drawing.Size(109, 48)
         Me.PagePreInstallPanel.TabIndex = 14
         Me.PagePreInstallPanel.Tag = "5"
-        '
-        'LblPreInstallNotice
-        '
-        Me.LblPreInstallNotice.AutoSize = true
-        Me.LblPreInstallNotice.Location = New System.Drawing.Point(3, 4)
-        Me.LblPreInstallNotice.Name = "LblPreInstallNotice"
-        Me.LblPreInstallNotice.Size = New System.Drawing.Size(84, 13)
-        Me.LblPreInstallNotice.TabIndex = 0
-        Me.LblPreInstallNotice.Tag = "page_preinstall_notice"
-        Me.LblPreInstallNotice.Text = "Pre-install notice"
+        Me.PagePreInstallPanel.Visible = false
         '
         'ChkPreInstallAgree
         '
@@ -516,12 +444,138 @@ Partial Class Main
         Me.ChkPreInstallAgree.Text = "I agree"
         Me.ChkPreInstallAgree.UseVisualStyleBackColor = true
         '
+        'LblPreInstallNotice
+        '
+        Me.LblPreInstallNotice.AutoSize = true
+        Me.LblPreInstallNotice.Location = New System.Drawing.Point(3, 4)
+        Me.LblPreInstallNotice.Name = "LblPreInstallNotice"
+        Me.LblPreInstallNotice.Size = New System.Drawing.Size(84, 13)
+        Me.LblPreInstallNotice.TabIndex = 0
+        Me.LblPreInstallNotice.Tag = "page_preinstall_notice"
+        Me.LblPreInstallNotice.Text = "Pre-install notice"
+        '
+        'PageInstallPanel
+        '
+        Me.PageInstallPanel.Controls.Add(Me.PrgIInstallXOS)
+        Me.PageInstallPanel.Controls.Add(Me.LblInstallInstallingXOS)
+        Me.PageInstallPanel.Controls.Add(Me.LblInstallNotice)
+        Me.PageInstallPanel.Location = New System.Drawing.Point(203, 153)
+        Me.PageInstallPanel.Name = "PageInstallPanel"
+        Me.PageInstallPanel.Size = New System.Drawing.Size(85, 48)
+        Me.PageInstallPanel.TabIndex = 15
+        Me.PageInstallPanel.Tag = "6"
+        Me.PageInstallPanel.Visible = false
+        '
+        'PrgIInstallXOS
+        '
+        Me.PrgIInstallXOS.BackColor = System.Drawing.Color.Transparent
+        Me.PrgIInstallXOS.IsIntermediate = false
+        Me.PrgIInstallXOS.Location = New System.Drawing.Point(10, 34)
+        Me.PrgIInstallXOS.Name = "PrgIInstallXOS"
+        Me.PrgIInstallXOS.Size = New System.Drawing.Size(576, 14)
+        Me.PrgIInstallXOS.TabIndex = 2
+        '
+        'LblInstallInstallingXOS
+        '
+        Me.LblInstallInstallingXOS.AutoSize = true
+        Me.LblInstallInstallingXOS.Location = New System.Drawing.Point(7, 17)
+        Me.LblInstallInstallingXOS.Name = "LblInstallInstallingXOS"
+        Me.LblInstallInstallingXOS.Size = New System.Drawing.Size(113, 13)
+        Me.LblInstallInstallingXOS.TabIndex = 1
+        Me.LblInstallInstallingXOS.Tag = "page_install_installing"
+        Me.LblInstallInstallingXOS.Text = "Installing halogenOS..."
+        '
+        'LblInstallNotice
+        '
+        Me.LblInstallNotice.AutoSize = true
+        Me.LblInstallNotice.Location = New System.Drawing.Point(7, 236)
+        Me.LblInstallNotice.Name = "LblInstallNotice"
+        Me.LblInstallNotice.Size = New System.Drawing.Size(66, 13)
+        Me.LblInstallNotice.TabIndex = 0
+        Me.LblInstallNotice.Tag = "page_install_notice"
+        Me.LblInstallNotice.Text = "Install notice"
+        '
+        'BtnShowConsole
+        '
+        Me.BtnShowConsole.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnShowConsole.FlatAppearance.BorderSize = 0
+        Me.BtnShowConsole.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnShowConsole.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnShowConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnShowConsole.Font = New System.Drawing.Font("Segoe UI", 10.25!)
+        Me.BtnShowConsole.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.BtnShowConsole.Location = New System.Drawing.Point(693, 12)
+        Me.BtnShowConsole.Name = "BtnShowConsole"
+        Me.BtnShowConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnShowConsole.Size = New System.Drawing.Size(99, 23)
+        Me.BtnShowConsole.TabIndex = 9
+        Me.BtnShowConsole.Tag = "mainform_showconsole"
+        Me.BtnShowConsole.Text = "Console"
+        Me.BtnShowConsole.UseVisualStyleBackColor = false
+        '
+        'BtnCancel
+        '
+        Me.BtnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.BtnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.BtnCancel.FlatAppearance.BorderSize = 0
+        Me.BtnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnCancel.Font = New System.Drawing.Font("Segoe UI", 10.25!)
+        Me.BtnCancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.BtnCancel.Location = New System.Drawing.Point(555, 566)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.BtnCancel.TabIndex = 7
+        Me.BtnCancel.Tag = "general_cancel"
+        Me.BtnCancel.Text = "Cancel"
+        Me.BtnCancel.UseVisualStyleBackColor = false
+        '
+        'BtnBack
+        '
+        Me.BtnBack.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.BtnBack.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnBack.FlatAppearance.BorderSize = 0
+        Me.BtnBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnBack.Font = New System.Drawing.Font("Segoe UI", 10.25!)
+        Me.BtnBack.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.BtnBack.Location = New System.Drawing.Point(636, 566)
+        Me.BtnBack.Name = "BtnBack"
+        Me.BtnBack.Size = New System.Drawing.Size(75, 23)
+        Me.BtnBack.TabIndex = 6
+        Me.BtnBack.Tag = "general_back"
+        Me.BtnBack.Text = "Back"
+        Me.BtnBack.UseVisualStyleBackColor = false
+        '
+        'BtnNext
+        '
+        Me.BtnNext.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.BtnNext.BackColor = System.Drawing.Color.FromArgb(CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnNext.FlatAppearance.BorderSize = 0
+        Me.BtnNext.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(30,Byte),Integer), CType(CType(139,Byte),Integer), CType(CType(229,Byte),Integer))
+        Me.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnNext.Font = New System.Drawing.Font("Segoe UI", 10.25!)
+        Me.BtnNext.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.BtnNext.Location = New System.Drawing.Point(717, 566)
+        Me.BtnNext.Name = "BtnNext"
+        Me.BtnNext.Size = New System.Drawing.Size(75, 23)
+        Me.BtnNext.TabIndex = 5
+        Me.BtnNext.Tag = "general_next"
+        Me.BtnNext.Text = "Next"
+        Me.BtnNext.UseVisualStyleBackColor = false
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.CancelButton = Me.BtnCancel
         Me.ClientSize = New System.Drawing.Size(804, 601)
+        Me.Controls.Add(Me.PageInstallPanel)
         Me.Controls.Add(Me.PagePreInstallPanel)
         Me.Controls.Add(Me.PageDlRomPanel)
         Me.Controls.Add(Me.PageDlStuffPanel)
@@ -555,6 +609,8 @@ Partial Class Main
         Me.PanelDlRomPrg.PerformLayout
         Me.PagePreInstallPanel.ResumeLayout(false)
         Me.PagePreInstallPanel.PerformLayout
+        Me.PageInstallPanel.ResumeLayout(false)
+        Me.PageInstallPanel.PerformLayout
         Me.ResumeLayout(false)
 
 End Sub
@@ -594,4 +650,8 @@ End Sub
     Friend WithEvents PagePreInstallPanel As Panel
     Friend WithEvents LblPreInstallNotice As Label
     Friend WithEvents ChkPreInstallAgree As CheckBox
+    Friend WithEvents PageInstallPanel As Panel
+    Friend WithEvents LblInstallNotice As Label
+    Friend WithEvents LblInstallInstallingXOS As Label
+    Friend WithEvents PrgIInstallXOS As xdui.FlatProgressBar
 End Class
