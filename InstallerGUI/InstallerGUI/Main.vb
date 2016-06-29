@@ -14,7 +14,8 @@ Public Class Main
     Private WasAlreadyInetDetected   As Boolean = False,
             IsToStartInstallation    As Boolean = False,
             DeviceDetectedForInstall As Boolean = False,
-            ShouldClose              As Boolean = False
+            ShouldClose              As Boolean = False,
+            IsFinishPage             As Boolean = False
 
     Private WithEvents _
         AdbDetectDeviceTimer As New Timer(),
@@ -241,6 +242,8 @@ Public Class Main
                     New Threading.ThreadStart(AddressOf DoInstall) _
                 )
                 InstallThread.Start()
+            Case PageFinishedPanel.Name
+                BtnNext.Enabled = True
         End Select
     End Sub
 
@@ -275,7 +278,10 @@ Public Class Main
             End If
         Next
         CurrentPage = FoundPage
-        BtnNext.Visible = Not (CurrentPage = PageCount - 2)
+        BtnNext.Text = IIf(Not (CurrentPage = PageCount - 2), 
+                           LangManager.GetString("general_next"), LangManager.GetString("general_finish")) _
+                           .ToString()
+        IsFinishPage = (CurrentPage = PageCount - 2)
         BtnBack.Visible = (CurrentPage > 0)
         HandlePage(FoundPageName)
     End Sub
@@ -302,13 +308,13 @@ Public Class Main
         Console.WriteLine("Installation is starting...")
         Dim p As New ProcessStartInfo
 
-        p.FileName  = "cmd.exe"
-        p.Arguments = "/C data/devices/" & InstallerStorage.TargetDevice & "/install.bat"
+        p.FileName  = "data/devices/" & InstallerStorage.TargetDevice & "/install.bat"
         Environment.SetEnvironmentVariable("PATH", 
                                            Environment.GetEnvironmentVariable("PATH") _
-                                           & ":prebuilts" & _
+                                           & ";" & Environment.CurrentDirectory & "\prebuilts" & _
                                            IIf(My.Computer.Info.OSPlatform.ToLower().Contains("unix"), "/linux/adb", "\adb").ToString() _
                                            )
+        Console.WriteLine("PATH: " & Environment.GetEnvironmentVariable("PATH"))
 
         ' Don't show a window!
         p.WindowStyle = ProcessWindowStyle.Hidden
@@ -331,6 +337,7 @@ Public Class Main
         proc.WaitForExit()
         Dim result As String = proc.StandardOutput.ReadToEnd()
         InstallState = CInt(IIf(result.Contains("!!!"), 3, 2))
+        Console.WriteLine("The final result is: " & vbNewLine & result)
     End Sub
 
     Protected Friend Sub ChangePage(Forward As Boolean)
@@ -338,7 +345,16 @@ Public Class Main
     End Sub
 
     Private Sub NextBackButton_Click(sender As Object, e As EventArgs) Handles BtnNext.Click, BtnBack.Click
-        If CType(sender, FlatButton).Equals(BtnBack) Then DM.DlWebClient.CancelAsync()
+        If CType(sender, FlatButton).Equals(BtnBack) Then
+            DM.DlWebClient.CancelAsync()
+        Else
+            If IsFinishPage Then
+                If ChkRebootDevice.Checked Then AdbHelper.ExecuteAdbCommand("reboot")
+                ShouldClose = True
+                Close()
+                End
+            End If
+        End If
         ChangePage(CType(sender, FlatButton).Equals(BtnNext))
     End Sub
 
@@ -469,11 +485,21 @@ Public Class Main
             Case 1: Return
             ' Installation succeeded, switch to finish page with good message
             Case 2:
+                Console.WriteLine("Installation succeeded :D")
+                LblInstallSucceeded.Visible = True
+                LblInstallFailed.Visible = False
             ' Installation failed, switch to finish page with bad message
             Case 3:
+                Console.WriteLine("Installation failed :/")
+                LblInstallSucceeded.Visible = False
+                LblInstallFailed.Visible = True
+                LblInstallFailed.Location = LblInstallSucceeded.Location
             ' !? Ignore.
             Case Else: Return
         End Select
+        InstallTimer.Interval = Integer.MaxValue
+        ChangePage(True)
+        InstallTimer.Stop()
     End Sub
 
 End Class

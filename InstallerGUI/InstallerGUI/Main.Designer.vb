@@ -62,6 +62,10 @@ Partial Class Main
         Me.BtnCancel = New xdui.FlatButton()
         Me.BtnBack = New xdui.FlatButton()
         Me.BtnNext = New xdui.FlatButton()
+        Me.PageFinishedPanel = New System.Windows.Forms.Panel()
+        Me.LblInstallSucceeded = New System.Windows.Forms.Label()
+        Me.LblInstallFailed = New System.Windows.Forms.Label()
+        Me.ChkRebootDevice = New System.Windows.Forms.CheckBox()
         Me.PageWelcomePanel.SuspendLayout
         Me.PageDetectDevicePanel.SuspendLayout
         Me.PageCheckInetPanel.SuspendLayout
@@ -71,6 +75,7 @@ Partial Class Main
         Me.PanelDlRomPrg.SuspendLayout
         Me.PagePreInstallPanel.SuspendLayout
         Me.PageInstallPanel.SuspendLayout
+        Me.PageFinishedPanel.SuspendLayout
         Me.SuspendLayout
         '
         'PageWelcomePanel
@@ -568,6 +573,50 @@ Partial Class Main
         Me.BtnNext.Text = "Next"
         Me.BtnNext.UseVisualStyleBackColor = false
         '
+        'PageFinishedPanel
+        '
+        Me.PageFinishedPanel.Controls.Add(Me.ChkRebootDevice)
+        Me.PageFinishedPanel.Controls.Add(Me.LblInstallFailed)
+        Me.PageFinishedPanel.Controls.Add(Me.LblInstallSucceeded)
+        Me.PageFinishedPanel.Location = New System.Drawing.Point(294, 153)
+        Me.PageFinishedPanel.Name = "PageFinishedPanel"
+        Me.PageFinishedPanel.Size = New System.Drawing.Size(498, 407)
+        Me.PageFinishedPanel.TabIndex = 16
+        Me.PageFinishedPanel.Tag = "7"
+        Me.PageFinishedPanel.Visible = false
+        '
+        'LblInstallSucceeded
+        '
+        Me.LblInstallSucceeded.AutoSize = true
+        Me.LblInstallSucceeded.Location = New System.Drawing.Point(7, 4)
+        Me.LblInstallSucceeded.Name = "LblInstallSucceeded"
+        Me.LblInstallSucceeded.Size = New System.Drawing.Size(48, 13)
+        Me.LblInstallSucceeded.TabIndex = 0
+        Me.LblInstallSucceeded.Tag = "page_finish_success"
+        Me.LblInstallSucceeded.Text = "Success"
+        '
+        'LblInstallFailed
+        '
+        Me.LblInstallFailed.AutoSize = true
+        Me.LblInstallFailed.Location = New System.Drawing.Point(9, 178)
+        Me.LblInstallFailed.Name = "LblInstallFailed"
+        Me.LblInstallFailed.Size = New System.Drawing.Size(35, 13)
+        Me.LblInstallFailed.TabIndex = 1
+        Me.LblInstallFailed.Tag = "page_finish_failed"
+        Me.LblInstallFailed.Text = "Failed"
+        '
+        'ChkRebootDevice
+        '
+        Me.ChkRebootDevice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left),System.Windows.Forms.AnchorStyles)
+        Me.ChkRebootDevice.AutoSize = true
+        Me.ChkRebootDevice.Location = New System.Drawing.Point(4, 387)
+        Me.ChkRebootDevice.Name = "ChkRebootDevice"
+        Me.ChkRebootDevice.Size = New System.Drawing.Size(61, 17)
+        Me.ChkRebootDevice.TabIndex = 2
+        Me.ChkRebootDevice.Tag = "page_finish_reboot_device"
+        Me.ChkRebootDevice.Text = "Reboot"
+        Me.ChkRebootDevice.UseVisualStyleBackColor = true
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
@@ -575,6 +624,7 @@ Partial Class Main
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.CancelButton = Me.BtnCancel
         Me.ClientSize = New System.Drawing.Size(804, 601)
+        Me.Controls.Add(Me.PageFinishedPanel)
         Me.Controls.Add(Me.PageInstallPanel)
         Me.Controls.Add(Me.PagePreInstallPanel)
         Me.Controls.Add(Me.PageDlRomPanel)
@@ -611,6 +661,8 @@ Partial Class Main
         Me.PagePreInstallPanel.PerformLayout
         Me.PageInstallPanel.ResumeLayout(false)
         Me.PageInstallPanel.PerformLayout
+        Me.PageFinishedPanel.ResumeLayout(false)
+        Me.PageFinishedPanel.PerformLayout
         Me.ResumeLayout(false)
 
 End Sub
@@ -654,4 +706,8 @@ End Sub
     Friend WithEvents LblInstallNotice As Label
     Friend WithEvents LblInstallInstallingXOS As Label
     Friend WithEvents PrgIInstallXOS As xdui.FlatProgressBar
+    Friend WithEvents PageFinishedPanel As Panel
+    Friend WithEvents LblInstallFailed As Label
+    Friend WithEvents LblInstallSucceeded As Label
+    Friend WithEvents ChkRebootDevice As CheckBox
 End Class

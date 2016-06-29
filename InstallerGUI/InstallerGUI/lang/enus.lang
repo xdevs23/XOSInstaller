@@ -23,6 +23,7 @@ general_next=Next
 general_cancel=Cancel
 general_back=Back
 general_retry=Retry
+general_finish=Finish
 confirm_exit=Are you sure you want to close the application?
 confirm_exit_title=Cancel progress
 [Main form]
@@ -46,6 +47,9 @@ page_preinstall_notice=Very important notice:[[LF]][[LF]]We will need to delete 
 page_preinstall_agree_chk=I have fully read the information above and I want to proceed now
 page_install_installing=Installing halogenOS...
 page_install_notice=halogenOS is being installed. Please note that this process will take some time.[[LF]][[LF]]Do not abort the process unless you are sure what you are doing! The phone will reboot several times during the installation.[[LF]]Please keep the cable plugged in and do not turn off the phone or your computer.
+page_finish_success=The installation of halogenOS seems to have completed successfully.[[LF]][[LF]]You can now disconnect your phone from your computer.[[LF]]If you want to, you have now the chance to install additional software like microG, SuperSU, etc. on your device.[[LF]][[LF]][[LF]]Thanks for using halogenOS!
+page_finish_failed=Unfortunately, the installation of halogenOS failed. We recommend you to check the console. We are really sorry for any inconveniences. If no changes have been made to your device, then you don't need to do anything and can try to install halogenOS again. If you are having problems or want a bootable system again, please restore your backup!
+page_finish_reboot_device=Reboot my device now
 #
 #
 [Console window]
