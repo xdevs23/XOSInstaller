@@ -1,6 +1,8 @@
 # XOSInstaller
 halogenOS Installer (.NET)
 
+This program is still in development progress.
+
 ### License
 
 ```
